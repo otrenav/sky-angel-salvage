@@ -1,0 +1,188 @@
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #353c48;
+    height: 100%;
+    color: #96a2b4;
+    margin: 0;
+}
+
+span {
+    color: #96a2b4;
+}
+
+select {
+    border-color: #636b78;
+    color: #96a2b4;
+    width: 100%;
+}
+
+hr {
+    border-color: #5e646d;
+}
+
+#wrapper {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+#page-wrapper {
+    background: #3c4452;
+    height: 100%;
+}
+
+#tabs {
+    text-align: center;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+#map-canvas {
+    width: 100%;
+    height: 1000px;
+}
+
+.active-tab {
+    background-color: #4c5665;
+}
+
+.active-option > span {
+    color: #00c292;
+}
+
+.color-scale {
+    text-align: center;
+    padding-top: 1em;
+    width: 100%;
+}
+
+.color-scale > p {
+    color: #7c8aa0;
+    display: inline;
+}
+
+.options-heading {
+    font-size: 1.5em;
+}
+
+.general-option,
+.options-heading {
+    font-weight: 300;
+    color: #7c8aa0;
+}
+
+.logo {
+    display: block;
+    margin: auto;
+    width: 100%
+}
+
+.container-fluid {
+    padding-bottom: 2em;
+    padding-right: 2em;
+    padding-left: 2em;
+    height: 100%;
+}
+
+.box {
+    margin-bottom: 15px;
+    overflow: hidden;
+    color: #dce2ec;
+    padding: 25px;
+}
+
+.box-text {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.icon {
+    position: absolute;
+    margin-top: -0.4em;
+    font-size: 14em;
+    color: #3b4250;
+}
+
+.progress {
+    background-color: rgba(120, 130, 140, .28);
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    margin-bottom: 18px;
+    border-radius: 0;
+    overflow: hidden;
+    height: 4px;
+}
+
+.text-danger {
+    color: #fb9678 !important;
+}
+
+.text-muted {
+    color: #8d9ea7 !important;
+}
+
+.text-success {
+    color: #00c292 !important;
+}
+
+.text-primary {
+    color: #ab8ce4 !important;
+}
+
+.text-megna {
+    color: #01c0c8 !important;
+}
+
+.progress-bar-primary {
+    background-color: #ab8ce4;
+}
+
+.progress-bar-success {
+    background-color: #00c292;
+}
+
+.progress-bar-megna {
+    background-color: #01c0c8;
+}
+
+.progress-bar-danger {
+    background-color: #fb9678;
+}
+
+.pull-right {
+    text-align: right;
+    float: right;
+}
+
+.box, input, select {
+    background: #353c48;
+}
+
+/*
+ * Google Maps
+ */
+
+/* Rectangle */
+.gm-style .gm-style-iw {
+    background-color: #353c48 !important;
+    height: 100% !important;
+    width: 100% !important;
+    font-color: #ffffff;
+    left: 0 !important;
+    top: 0 !important;
+    font-weight: 500;
+    padding: 1em;
+}
+
+/* Bottom arrow */
+.gm-style div div div div div div div div {
+    background-color: #353c48 !important;
+}

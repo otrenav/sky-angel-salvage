@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" sizes="16x16" href="">
+        <title>Sky Angel / Ares</title>
+        <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
+        <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
+        <link href="./static/css/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfA8Ejblz1e7T9Eh-E8Qug0hpjMsPFH18&libraries=visualization,geometry&callback=init"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div id="tabs" class="row">
+
+                        <div class="col-4" onclick="location.href='./fenix.html';">
+                            <h1>Fénix</h1>
+                        </div>
+                        <div class="col-4 active-tab" onclick="location.href='./ares.html';">
+                            <h1>Ares</h1>
+                        </div>
+                        <div class="col-4" onclick="location.href='./marco-polo.html';">
+                            <h1>Marco Polo</h1>
+                        </div>
+                    </div>
+                    <div id="content" class="row">
+                        <div id="sidebar" class="col-lg-2">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-4">
+                                    <div class="box">
+                                        <img src="./static/img/sky-angel-logo.png" class="logo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-8">
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Datos</h1>
+                                            </div>
+                                            <div class="col-12">
+                                                <select>
+                                                    <option value="crimen" select>Crimen</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Día</h1>
+                                            </div>
+                                            <div class="col-6" onclick="heatmapDaysAll();">
+                                                <span class="general-option">Todos</span>
+                                            </div>
+                                            <div class="col-6" onclick="heatmapDaysNone();">
+                                                <span class="general-option">Ninguno</span>
+                                            </div>
+                                            <div class="col-12">&nbsp;</div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Lunes</span>
+                                            </div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Martes</span>
+                                            </div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Míercoles</span>
+                                            </div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Jueves</span>
+                                            </div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Viernes</span>
+                                            </div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Sábado</span>
+                                            </div>
+                                            <div class="col-lg-12 col-2">
+                                                <span>Domingo</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div id="time-options" class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Hora</h1>
+                                            </div>
+                                            <div class="col-6" onclick="heatmapHoursAll();">
+                                                <span class="general-option">Todas</span>
+                                            </div>
+                                            <div class="col-6" onclick="heatmapHoursNone();">
+                                                <span class="general-option">Ninguna</span>
+                                            </div>
+                                            <div class="col-12">&nbsp;</div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Intensidad del crimen</h1>
+                                            </div>
+                                            <div class="col-12">
+                                                <img src="static/img/ares-gradient.png" width="100%">
+                                                <div class="color-scale">
+                                                    <p style="float: left;">0</p>
+                                                    <p>0.5</p>
+                                                    <p style="float: right;">1</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="results" class="col-lg-10">
+                            <div id="top-boxes" class="box">
+                                <div class="row">
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="icon">
+                                                            <i class="fa fa-chart-area"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h1 class="box-text text-muted">Índice noroeste</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h1 id="box-int-one" class="text-danger pull-right"></h1>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="progress">
+                                                    <div class="progress-bar-danger"
+                                                         aria-valuenow="40"
+                                                         aria-valuemin="0"
+                                                         aria-valuemax="100"
+                                                         style="width: 40%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="icon">
+                                                            <i class="fa fa-chart-bar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h1 class="box-text text-muted">Incidencias noroeste</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h1 id="box-int-two" class="text-megna pull-right"></h1>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="progress">
+                                                    <div class="progress-bar-megna"
+                                                         aria-valuenow="40"
+                                                         aria-valuemin="0"
+                                                         aria-valuemax="100"
+                                                         style="width: 40%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="icon">
+                                                            <i class="fa fa-chart-line"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h1 class="box-text text-muted">Índice centro</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h1 id="box-int-three" class="text-primary pull-right"></h1>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="progress">
+                                                    <div class="progress-bar-primary"
+                                                         aria-valuenow="40"
+                                                         aria-valuemin="0"
+                                                         aria-valuemax="100"
+                                                         style="width: 40%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="icon">
+                                                            <i class="fa fa-chart-pie"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h1 class="box-text text-muted">Incidencias centro</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h1 id="box-int-four" class="text-success pull-right"></h1>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="progress">
+                                                    <div class="progress-bar-success"
+                                                         aria-valuenow="40"
+                                                         aria-valuemin="0"
+                                                         aria-valuemax="100"
+                                                         style="width: 40%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="map" class="row">
+                                <div class="col-12">
+                                    <div class="box">
+                                        <div id="map-canvas"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./static/js/external/countUp.min.js"></script>
+        <script src="./static/js/external/jquery.min.js"></script>
+        <script src="./static/js/global-constants.js"></script>
+        <script src="./static/js/ares-constants.js"></script>
+        <script src="./static/js/ares-main.js"></script>
+        <script src="./static/js/global-main.js"></script>
+    </body>
+</html>
