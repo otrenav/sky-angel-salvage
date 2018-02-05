@@ -61,12 +61,13 @@ hr {
     margin-bottom: 2em;
 }
 
-.active-tab {
-    background-color: #4c5665;
+#select-a-day-warning {
+    margin-bottom: 1em;
+    color: #fb9678;
 }
 
-.active-option > span {
-    color: #00c292;
+.active-tab {
+    background-color: #4c5665;
 }
 
 .color-scale {
@@ -80,11 +81,15 @@ hr {
     display: inline;
 }
 
+.option-enabled > span {
+    color: #00c292;
+}
+
 .options-heading {
     font-size: 1.5em;
 }
 
-.general-option,
+.group-option,
 .options-heading {
     font-weight: 300;
     color: #7c8aa0;

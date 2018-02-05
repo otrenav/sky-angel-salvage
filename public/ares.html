@@ -52,38 +52,9 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="row">
+                                        <div id="day-options" class="row">
                                             <div class="col-12">
                                                 <h1 class="options-heading">Día</h1>
-                                            </div>
-                                            <div class="col-12" onclick="heatmapDaysAll();">
-                                                <span class="general-option">Todos</span>
-                                            </div>
-                                            <div class="col-12">&nbsp;</div>
-                                            <div class="col-12" onclick="heatmapDaysNone();">
-                                                <span class="general-option">Ninguno</span>
-                                            </div>
-                                            <div class="col-12">&nbsp;</div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Lunes</span>
-                                            </div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Martes</span>
-                                            </div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Míercoles</span>
-                                            </div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Jueves</span>
-                                            </div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Viernes</span>
-                                            </div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Sábado</span>
-                                            </div>
-                                            <div class="col-lg-12 col-2">
-                                                <span>Domingo</span>
                                             </div>
                                         </div>
                                         <hr>
@@ -91,12 +62,15 @@
                                             <div class="col-12">
                                                 <h1 class="options-heading">Hora</h1>
                                             </div>
-                                            <div class="col-12" onclick="heatmapHoursAll();">
-                                                <span class="general-option">Todas</span>
+                                            <div id="select-a-day-warning"
+                                                 class="col-12" style="display: none">
+                                                Seleccione día.
                                             </div>
-                                            <div class="col-12">&nbsp;</div>
-                                            <div class="col-12" onclick="heatmapHoursNone();">
-                                                <span class="general-option">Ninguna</span>
+                                            <div class="col-6" onclick="heatmapHoursAll();">
+                                                <span class="group-option">Todas</span>
+                                            </div>
+                                            <div class="col-6" onclick="heatmapHoursNone();">
+                                                <span class="group-option">Ninguna</span>
                                             </div>
                                             <div class="col-12">&nbsp;</div>
                                         </div>
