@@ -33,18 +33,17 @@ var initMap = function() {
             },
             {
                 featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#59606B'}]
+                elementType: 'labels.text.fill'
             },
             {
                 featureType: 'road',
                 elementType: 'geometry',
-                stylers: [{color: '#59606B'}]
+                stylers: [{color: '#fb9678'}]
             },
             {
                 featureType: 'road',
                 elementType: 'geometry.stroke',
-                stylers: [{color: '#59606B'}]
+                stylers: [{color: '#fb9678'}]
             },
             {
                 featureType: 'road',
@@ -54,12 +53,12 @@ var initMap = function() {
             {
                 featureType: 'road.highway',
                 elementType: 'geometry',
-                stylers: [{color: '#59606B'}]
+                stylers: [{color: '#01c0c8'}]
             },
             {
                 featureType: 'road.highway',
                 elementType: 'geometry.stroke',
-                stylers: [{color: '#59606B'}]
+                stylers: [{color: '#01c0c8'}]
             },
             {
                 featureType: 'road.highway',
@@ -95,7 +94,7 @@ var initMap = function() {
                 featureType: "all",
                 elementType: "labels",
                 stylers: [{ visibility: "off" }]
-            },
+            }
         ]
     });
 };
