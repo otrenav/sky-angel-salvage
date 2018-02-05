@@ -28,15 +28,15 @@
     - [ ] Vector elegido cambia parte "recorrida" a gris claro
 - [x] Etiquetas con mayor espacio para que no se lea como "todos terrestres"
 - [x] Poder ver a nivel de calles la ubicación de un vector (agregar colores)
-- [ ] Eliminar vectores duplicados para no ver imágenes con "jitter"
+- [x] Eliminar vectores duplicados para no ver imágenes con "jitter"
 
 ### ARES
 
 - [x] Leyenda de colores para "heatmaps" menos gruesa
 - [x] Etiquetas de "todos"/"ninguna" con mayor espacio y alineadas verticalmente
-- [ ] Filtro por día primero y después por hora
-  - [ ] No se deben mostrar observaciones para días distintos al mismo tiempo
-  - [ ] Si no se han seleccionado horas específicas se debe mostrar la
+- [x] Filtro por día primero y después por hora
+  - [x] No se deben mostrar observaciones para días distintos al mismo tiempo
+  - [x] Si no se han seleccionado horas específicas se debe mostrar la
         información de todo el día simultáneamente
 
 ## Preguntas
