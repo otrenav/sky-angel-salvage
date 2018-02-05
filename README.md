@@ -27,6 +27,8 @@
       - [ ] Ícono "localizador" con palpitaciones y "sonido"
     - [ ] Vector elegido cambia parte "recorrida" a gris claro
 - [x] Etiquetas con mayor espacio para que no se lea como "todos terrestres"
+- [x] Poder ver a nivel de calles la ubicación de un vector (agregar colores)
+- [ ] Eliminar vectores duplicados para no ver imágenes con "jitter"
 
 ### ARES
 
