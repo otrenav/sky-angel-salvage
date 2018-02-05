@@ -106,7 +106,7 @@ var createVector = function(params) {
         path: params.path,
         info: params.info,
         strokeOpacity: 1,
-        strokeWeight: 1,
+        strokeWeight: 2,
         geodesic: true,
         icons: [
             { icon: LOCATION, offset: params.percent },
@@ -167,10 +167,10 @@ var initializeClients = function() {
 var initializeAsyncGlobalVariables = function() {
     ARROW = {
         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-        scale: 2
+        scale: 3
     };
     LOCATION = {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 2
+        scale: 3
     };
 };
