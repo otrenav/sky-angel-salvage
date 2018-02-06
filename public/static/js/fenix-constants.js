@@ -1,26 +1,110 @@
 
 var CLIENTS = {
-    ARC: {color: '#fb9678', visuals: [], category: 'terrestre'},
-    C4: {color: '#66ffff', visuals: [], category: 'naviero'},
-    CIS: {color: '#00c292', visuals: [], category: ''},
-    DCX: {color: '#ab8ce4', visuals: [], category: 'terrestre'},
-    DHL: {color: '#ffff99', visuals: [], category: 'naviero'},
-    DHLT: {color: '#01c0c8', visuals: [], category: ''},
-    DMC: {color: '#FFBC67', visuals: [], category: 'terrestre'},
-    GEO: {color: '#DA727E', visuals: [], category: 'naviero'},
-    HEL: {color: '#AC6C82', visuals: [], category: ''},
-    HSD: {color: '#E94858', visuals: [], category: 'terrestre'},
-    JAH: {color: '#82BF6E', visuals: [], category: 'naviero'},
-    MOL: {color: '#99ff66', visuals: [], category: ''},
-    MSC: {color: '#6699ff', visuals: [], category: 'terrestre'},
-    MSK: {color: '#ffa500', visuals: [], category: 'naviero'},
-    NAV: {color: '#3CB4CB', visuals: [], category: ''},
-    NAVT: {color: '#F0F0F1', visuals: [], category: 'terrestre'},
-    NTA: {color: '#ffffff', visuals: [], category: ''},
-    OIL: {color: '#ffccff', visuals: [], category: 'terrestre'},
-    SMT: {color: '#18CDCA', visuals: [], category: ''},
-    SSA: {color: '#4F80E1', visuals: [], category: 'terrestre'},
-    SUN: {color: '#66ff99', visuals: [], category: ''}
+    ARC: {
+        color: '#fb9678',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    C4: {
+        color: '#66ffff',
+        category: 'naviero',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    CIS: {
+        color: '#00c292',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    DCX: {
+        color: '#ab8ce4',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    DHL: {
+        color: '#ffff99',
+        category: 'naviero',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    DHLT: {
+        color: '#01c0c8',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    DMC: {
+        color: '#FFBC67',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    GEO: {
+        color: '#DA727E',
+        category: 'naviero',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    HEL: {
+        color: '#AC6C82',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    HSD: {
+        color: '#E94858',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    JAH: {
+        color: '#82BF6E',
+        category: 'naviero',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    MOL: {
+        color: '#99ff66',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    MSC: {
+        color: '#6699ff',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    MSK: {
+        color: '#ffa500',
+        category: 'naviero',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    NAV: {
+        color: '#3CB4CB',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    NAVT: {
+        color: '#F0F0F1',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    NTA: {
+        color: '#ffffff',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    OIL: {
+        color: '#ffccff',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    SMT: {
+        color: '#18CDCA',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    SSA: {
+        color: '#4F80E1',
+        category: 'terrestre',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    },
+    SUN: {
+        color: '#66ff99',
+        category: '',
+        visuals: { inactive: [], active: [], future: [], dynamic: [] }
+    }
 };
 
 var DATA = [

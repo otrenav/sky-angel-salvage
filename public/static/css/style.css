@@ -191,13 +191,18 @@ hr {
 /* Rectangle */
 .gm-style .gm-style-iw {
     background-color: #353c48 !important;
-    height: 100% !important;
-    width: 100% !important;
+    height: 110% !important;
+    width: 110% !important;
     font-color: #ffffff;
     left: 0 !important;
     top: 0 !important;
     font-weight: 500;
     padding: 1em;
+}
+
+/* Remove "close" button */
+.gm-style-iw + div {
+    display: none;
 }
 
 /* Bottom arrow */
