@@ -13,9 +13,18 @@ var initMap = function() {
         center: {lat: 19.432608, lng:-99.133209},
         zoom: 5,
         styles: [
-            {elementType: 'geometry', stylers: [{color: '#59606B'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#59606B'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#59606B'}]},
+            {
+                elementType: 'geometry',
+                stylers: [{color: '#59606B'}]
+            },
+            {
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#59606B'}]
+            },
+            {
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#59606B'}]
+            },
             {
                 featureType: 'administrative.locality',
                 elementType: 'labels.text.fill',
@@ -38,12 +47,12 @@ var initMap = function() {
             {
                 featureType: 'road',
                 elementType: 'geometry',
-                stylers: [{color: '#fb9678'}]
+                stylers: [{color: '#01c0c8'}]
             },
             {
                 featureType: 'road',
                 elementType: 'geometry.stroke',
-                stylers: [{color: '#fb9678'}]
+                stylers: [{color: '#01c0c8'}]
             },
             {
                 featureType: 'road',
@@ -53,12 +62,12 @@ var initMap = function() {
             {
                 featureType: 'road.highway',
                 elementType: 'geometry',
-                stylers: [{color: '#01c0c8'}]
+                stylers: [{color: '#59606B'}]
             },
             {
                 featureType: 'road.highway',
                 elementType: 'geometry.stroke',
-                stylers: [{color: '#01c0c8'}]
+                stylers: [{color: '#59606B'}]
             },
             {
                 featureType: 'road.highway',
