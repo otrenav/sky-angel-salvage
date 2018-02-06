@@ -76,13 +76,16 @@ var toggleVectors = function(client, div, color) {
 
 var updateVectors = function(client, obj, color) {
     c = color ? color : CLIENTS[client].color;
-    if (obj === null) { clearDynamics(client); }
+    if (obj === null) {
+        clearDynamicVisualizations(client);
+        resetVectorsForClient(client);
+    }
     updateVectorGroup(CLIENTS[client].visuals.active, obj, ACTIVE_VECTOR_COLOR);
     updateVectorGroup(CLIENTS[client].visuals.inactive, obj, c);
     updateVectorGroup(CLIENTS[client].visuals.future, obj, c);
 };
 
-var clearDynamics = function(client) {
+var clearDynamicVisualizations = function(client) {
     var dynamics = CLIENTS[client].visuals.dynamic;
     for (var i = 0; i < dynamics.length; i++) {
         try {
@@ -90,6 +93,13 @@ var clearDynamics = function(client) {
         } catch (error) {
             dynamics[i].open(null);
         }
+    }
+};
+
+var resetVectorsForClient = function(client) {
+    for (var i = 0; i < CLIENTS[client].visuals.inactive.length; i++) {
+        CLIENTS[client].visuals.inactive[i].setVisible(true);
+        CLIENTS[client].visuals.active[i].setVisible(false);
     }
 };
 
