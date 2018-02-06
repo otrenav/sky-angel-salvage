@@ -18,17 +18,19 @@
 ### FENIX
 
 - [ ] Animación de vectores
-  - [ ] Inicialmente:
-    - [ ] Vectores con mismo color por cliente
-    - [ ] Ningún vector muestra ícono "localizador"
+  - [x] Inicialmente:
+    - [x] Vectores con mismo color por cliente
+    - [x] Ningún vector muestra ícono "localizador"
   - [ ] Al dar clic:
     - [ ] Demás vectores se "atenuan"
-    - [ ] Vector elegido activa su ícono de "localizador"
-      - [ ] Ícono "localizador" con palpitaciones y "sonido"
-    - [ ] Vector elegido cambia parte "recorrida" a gris claro
+    - [x] Vector elegido activa su ícono de "localizador"
+      - [x] Ícono "localizador" con palpitaciones
+    - [x] Vector elegido cambia parte "recorrida" a otro color
 - [x] Etiquetas con mayor espacio para que no se lea como "todos terrestres"
 - [x] Poder ver a nivel de calles la ubicación de un vector (agregar colores)
 - [x] Eliminar vectores duplicados para no ver imágenes con "jitter"
+- [ ] Actualizar información de cajas cuando cambian los clientes
+  - TODO: Necesito la lógica de cómo deben cambiar
 
 ### ARES
 
