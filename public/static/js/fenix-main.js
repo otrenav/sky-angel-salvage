@@ -195,7 +195,7 @@ var createVector = function(params) {
         strokeColor: params.color,
         path: params.path,
         strokeOpacity: 1,
-        strokeWeight: 4,
+        strokeWeight: 2,
         geodesic: true,
         icons: icons
     });
@@ -260,7 +260,7 @@ var linkVectors = function(vectorInactive, vectorActive, vectorFuture) {
 var initializeAsyncGlobalVariables = function() {
     ARROW = {
         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-        scale: 4
+        scale: 3
     };
     LOCATION = {
         url: "static/img/ripple.svg",
