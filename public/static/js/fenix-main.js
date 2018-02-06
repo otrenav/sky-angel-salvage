@@ -120,10 +120,17 @@ var initializeClients = function(row) {
         CLIENTS[client].visuals.active.push(vectorActive);
         CLIENTS[client].visuals.future.push(vectorFuture);
 
+        var marker = createRadarIcon(
+            client,
+            paramsFuture,
+            [vectorInactive, vectorActive, vectorFuture]
+        );
         createInfoWindow(
-            client, paramsFuture, [vectorInactive, vectorActive, vectorFuture]);
-        createRadarIcon(
-            client, paramsFuture, [vectorInactive, vectorActive, vectorFuture]);
+            client,
+            paramsFuture,
+            [vectorInactive, vectorActive, vectorFuture],
+            marker
+        );
         linkVectors(vectorInactive, vectorActive, vectorFuture);
     }
 };
@@ -184,26 +191,6 @@ var createVector = function(params) {
     });
 };
 
-
-var createInfoWindow = function(client, paramsFuture, vectors) {
-    var map;
-    var infoWindow = new google.maps.InfoWindow({
-        content: paramsFuture.info
-    });
-    infoWindow.setPosition(paramsFuture.path[0]);
-    CLIENTS[client].visuals.dynamic.push(infoWindow);
-    for (var i = 0; i < vectors.length; i++) {
-        vectors[i].addListener('click', function() {
-            map = infoWindow.getMap();
-            if (map === undefined || map === null) {
-                infoWindow.open(MAP);
-            } else {
-                infoWindow.open(null);
-            }
-        });
-    }
-};
-
 var createRadarIcon = function(client, paramsFuture, vectors) {
     var marker = new google.maps.Marker({
         position: paramsFuture.path[0],
@@ -216,6 +203,31 @@ var createRadarIcon = function(client, paramsFuture, vectors) {
     for (var i = 0; i < vectors.length; i++) {
         vectors[i].addListener('click', function() {
             marker.setVisible(!marker.getVisible());
+        });
+    }
+    return marker;
+};
+
+var createInfoWindow = function(client, paramsFuture, vectors, marker) {
+    var map;
+    var infoWindow = new google.maps.InfoWindow({
+        content: paramsFuture.info
+    });
+    infoWindow.setPosition(paramsFuture.path[0]);
+    CLIENTS[client].visuals.dynamic.push(infoWindow);
+    google.maps.event.addListener(infoWindow, 'closeclick', function() {
+        vectors[0].setVisible(true);
+        vectors[1].setVisible(false);
+        marker.setVisible(false);
+    });
+    for (var i = 0; i < vectors.length; i++) {
+        vectors[i].addListener('click', function() {
+            map = infoWindow.getMap();
+            if (map === undefined || map === null) {
+                infoWindow.open(MAP);
+            } else {
+                infoWindow.open(null);
+            }
         });
     }
 };

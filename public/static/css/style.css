@@ -200,11 +200,6 @@ hr {
     padding: 1em;
 }
 
-/* Remove "close" button */
-.gm-style-iw + div {
-    display: none;
-}
-
 /* Bottom arrow */
 .gm-style div div div div div div div div {
     background-color: #353c48 !important;
