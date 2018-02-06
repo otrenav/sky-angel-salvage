@@ -2,7 +2,7 @@
 var CLIENTS = {
     ARC: {
         color: '#fb9678',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     C4: {
@@ -12,7 +12,7 @@ var CLIENTS = {
     },
     CIS: {
         color: '#00c292',
-        category: '',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     DCX: {
@@ -22,32 +22,32 @@ var CLIENTS = {
     },
     DHL: {
         color: '#ffff99',
-        category: 'naviero',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     DHLT: {
         color: '#01c0c8',
-        category: '',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     DMC: {
         color: '#FFBC67',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     GEO: {
         color: '#DA727E',
-        category: 'naviero',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     HEL: {
         color: '#AC6C82',
-        category: '',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     HSD: {
         color: '#E94858',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     JAH: {
@@ -57,22 +57,22 @@ var CLIENTS = {
     },
     MOL: {
         color: '#99ff66',
-        category: '',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     MSC: {
         color: '#6699ff',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     MSK: {
         color: '#ffa500',
-        category: 'naviero',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     NAV: {
         color: '#3CB4CB',
-        category: '',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     NAVT: {
@@ -82,7 +82,7 @@ var CLIENTS = {
     },
     NTA: {
         color: '#ffffff',
-        category: '',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     OIL: {
@@ -92,7 +92,7 @@ var CLIENTS = {
     },
     SMT: {
         color: '#18CDCA',
-        category: '',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     SSA: {
@@ -102,7 +102,7 @@ var CLIENTS = {
     },
     SUN: {
         color: '#66ff99',
-        category: '',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     }
 };
