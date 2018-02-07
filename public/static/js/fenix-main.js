@@ -359,7 +359,7 @@ var updatedBoxValues = function() {
 var initializeAsyncGlobalVariables = function() {
     ARROW = {
         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-        scale: 3
+        scale: 2
     };
     LOCATION = {
         url: "static/img/ripple.svg",
