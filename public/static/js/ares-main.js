@@ -1,6 +1,6 @@
 
 //
-// NOTE: Global-space objects: `HEATMAPS`, `MAP`, `updateBoxInts()`
+// NOTE: Global-space objects: `HEATMAPS`, `MAP`, `updateBoxValues()`
 //
 
 var DAY_SELECTED = '';
@@ -23,7 +23,7 @@ var heatmapToggleDay = function(day, div) {
         DAY_SELECTED = day;
         heatmapHoursAll();
     }
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var heatmapToggleTime = function(time, div) {
@@ -38,7 +38,7 @@ var heatmapToggleTime = function(time, div) {
             heatmapUpdateDayTime(DAY_SELECTED, time, MAP);
             $(div).addClass("option-enabled");
         }
-        updateBoxInts([]);
+        updateBoxValues(updatedBoxValues());
     }
 };
 
@@ -49,7 +49,7 @@ var heatmapHoursAll = function() {
         warning(false);
         heatmapsUpdateAllHoursForDay(DAY_SELECTED, MAP);
         $("div.hour-option").addClass("option-enabled");
-        updateBoxInts([]);
+        updateBoxValues(updatedBoxValues());
     }
 };
 
@@ -57,7 +57,7 @@ var heatmapHoursNone = function() {
     warning(false);
     $("div.hour-option").removeClass("option-enabled");
     heatmapsUpdateAllHoursForDay(DAY_SELECTED, null);
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var heatmapsUpdateAllHoursForDay = function(day, obj) {
@@ -76,6 +76,23 @@ var resetDaySelection = function() {
     warning(false);
     heatmapHoursNone();
     $("div.option").removeClass("option-enabled");
+};
+
+var updatedBoxValues = function() {
+    return {
+        numbers: [
+            Math.floor(Math.random() * 1000),
+            Math.floor(Math.random() * 1000),
+            Math.floor(Math.random() * 1000),
+            Math.floor(Math.random() * 1000)
+        ],
+        percents: [
+            Math.floor(Math.random() * 100),
+            Math.floor(Math.random() * 100),
+            Math.floor(Math.random() * 100),
+            Math.floor(Math.random() * 100)
+        ]
+    };
 };
 
 var initializeHeatmaps = function() {

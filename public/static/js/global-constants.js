@@ -1,11 +1,11 @@
 
 var MAP;
 
-var BOX_INTS = [
-    new CountUp("box-int-one", 0, 23),
-    new CountUp("box-int-two", 0, 169),
-    new CountUp("box-int-three", 0, 157),
-    new CountUp("box-int-four", 0, 431)
+var BOX_VALUES = [
+    new CountUp("box-int-one", 0, 0),
+    new CountUp("box-int-two", 0, 0),
+    new CountUp("box-int-three", 0, 0),
+    new CountUp("box-int-four", 0, 0)
 ];
 
 var initMap = function() {

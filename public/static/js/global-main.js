@@ -1,30 +1,35 @@
 
 //
-// NOTE: Global-space variables: `BOX_INTS`
+// NOTE: Global-space variables: `BOX_VALUES`
 //
 
 var init = function() {
-    initBoxInts();
+    initBoxValues();
     initMap();
     pageInit();
 };
 
-var initBoxInts = function() {
-    for (var i = 0; i < BOX_INTS.length; i++) {
-        if (!BOX_INTS[i].error) {
-            BOX_INTS[i].start();
+var initBoxValues = function() {
+    for (var i = 0; i < BOX_VALUES.length; i++) {
+        if (!BOX_VALUES[i].error) {
+            BOX_VALUES[i].start();
         } else {
-            console.error(BOX_INTS[i].error);
+            console.error(BOX_VALUES[i].error);
         }
     }
 };
 
-var updateBoxInts = function(values) {
-    for (var i = 0; i < BOX_INTS.length; i++) {
-        updateBoxInt(i, Math.floor(Math.random() * 1000));
+var updateBoxValues = function(values) {
+    for (var i = 0; i < BOX_VALUES.length; i++) {
+        updateBoxPercent(i, values.percents[i]);
+        updateBoxValue(i, values.numbers[i]);
     }
 };
 
-var updateBoxInt = function(position, value) {
-    BOX_INTS[position].update(value);
+var updateBoxValue = function(position, number) {
+    BOX_VALUES[position].update(number);
+};
+
+var updateBoxPercent = function(position, percent) {
+    $('#progress-percent-' + (position + 1)).css('width', percent + '%');
 };

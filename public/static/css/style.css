@@ -6,6 +6,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #3c4452;
     background: #3c4452;
     height: 100%;
     color: #96a2b4;
@@ -191,16 +192,15 @@ hr {
 /* Rectangle */
 .gm-style .gm-style-iw {
     background-color: #353c48 !important;
-    height: 110% !important;
-    width: 110% !important;
     font-color: #ffffff;
-    left: 0 !important;
-    top: 0 !important;
     font-weight: 500;
-    padding: 1em;
 }
 
 /* Bottom arrow */
 .gm-style div div div div div div div div {
     background-color: #353c48 !important;
+}
+
+#info-window {
+    padding: 1em;
 }

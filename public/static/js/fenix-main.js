@@ -1,14 +1,23 @@
 
 //
-// NOTE: Global-space objects: `MAP`, `updateBoxInts()`
+// NOTE: Global-space objects: `MAP`, `updateBoxValues()`
 //
 
 var ARROW, LOCATION;
-var ACTIVE_VECTOR_COLOR = '#AAAAAA';
+var ACTIVE_VECTOR_COLOR = '#EEEEEE';
+
+//
+// Positions in data observations
+//
+var ID_POS = 0;
+var IMP_EXP_POS = 1;
 var START_LAT_POS = 2;
 var START_LNG_POS = 3;
 var END_LAT_POS = 4;
 var END_LNG_POS = 5;
+var DATE_START_POS = 6;
+var DATE_END_POS = 7;
+var CLIENT_POS = 8;
 
 var pageInit = function() {
     insertClientOptions();
@@ -22,14 +31,14 @@ var vectorsAll = function() {
         $(this).find('span').css('color', CLIENTS[$(this).text().trim()].color);
     });
     updateAllVectors(MAP);
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var vectorsNone = function() {
     $("div.option").removeClass("active-option");
     $("div.option").find('span').css('color', '#96a2b4');
     updateAllVectors(null);
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var updateAllVectors = function(obj) {
@@ -42,12 +51,12 @@ var updateAllVectors = function(obj) {
 
 var vectorsTerrestres = function() {
     toggleVectorsInCategory('terrestre', '#00c292');
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var vectorsNavieros = function() {
     toggleVectorsInCategory('naviero', '#fb9678');
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var toggleVectorsInCategory = function(category, color) {
@@ -71,7 +80,7 @@ var toggleVectors = function(client, div, color) {
         $(div).addClass("active-option");
         $(div).find('span').css('color', c);
     }
-    updateBoxInts([]);
+    updateBoxValues(updatedBoxValues());
 };
 
 var updateVectors = function(client, obj, color) {
@@ -114,7 +123,8 @@ var initializeClients = function(row) {
     var client, params, percent;
     for (var i = 0; i < DATA.length; i++) {
         row = DATA[i];
-        client = DATA[i][6];
+        client = DATA[i][CLIENT_POS];
+        CLIENTS[client].data.push(row);
         percent = computePercent(row);
 
         paramsInactive = createParams(row, client, percent, 'inactive');
@@ -146,15 +156,28 @@ var initializeClients = function(row) {
 };
 
 var computePercent = function(row) {
-    return Math.floor(Math.random() * 100) + '%';
+    var start = row[DATE_START_POS];
+    var end = row[DATE_END_POS];
+    var today = new Date();
+    if (today < start) {
+        return '0%';
+    } else if (today > end) {
+        return '100%';
+    }
+    return Math.round(((today - start) / (end - start)) * 100) + '%';
 };
 
 var createParams = function(row, client, percent, type) {
     var start, end;
     var info = `
-        ID: ${row[0]} <br>
-        ETA: [Pendiente] <br>
-        Recorrido: ${percent} <br>
+        <div id="info-window">
+            <table>
+                <tr><td>ID:</td><td class="pull-right">${row[ID_POS]}</td></tr>
+                <tr><td>Salida:</td><td class="pull-right">${dateString(row[DATE_START_POS])}</td></tr>
+                <tr><td>Llegada:</td><td class="pull-right">${dateString(row[DATE_END_POS])}</td></tr>
+                <tr><td>Recorrido:</td><td class="pull-right">${percent}</td></tr>
+            </table>
+        </div>
     `;
     var color = (
         type === 'active' ? ACTIVE_VECTOR_COLOR : CLIENTS[client].color
@@ -174,6 +197,23 @@ var createParams = function(row, client, percent, type) {
         path: [start, end],
         arrow: type === 'future' ? true : false
     };
+};
+
+var dateString = function(date) {
+    year = date.getFullYear();
+    month = twoZeros(date.getMonth());
+    day = twoZeros(date.getDate());
+    hour = date.getHours();
+    min = date.getMinutes();
+    return (hour + ':' + min + '&nbsp;&nbsp;' +
+            day + '/' + month + '/' + year);
+};
+
+var twoZeros = function(int) {
+    if (int < 10) {
+        return '0' + int;
+    }
+    return '' + int;
 };
 
 var locationCoordinates = function(row, percent) {
@@ -219,17 +259,33 @@ var createRadarIcon = function(client, paramsFuture, vectors) {
 };
 
 var createInfoWindow = function(client, paramsFuture, vectors, marker) {
-    var map;
     var infoWindow = new google.maps.InfoWindow({
-        content: paramsFuture.info
+        content: paramsFuture.info,
+        maxWidth: 500
     });
     infoWindow.setPosition(paramsFuture.path[0]);
     CLIENTS[client].visuals.dynamic.push(infoWindow);
+    resetInfoWindowCloseBehavior(infoWindow, vectors, marker);
+    clickVectorsToShowHideInfoWindow(infoWindow, vectors);
+    removeWhiteBoxAroundInfoWindow(infoWindow);
+};
+
+var resetInfoWindowCloseBehavior = function(infoWindow, vectors, marker) {
     google.maps.event.addListener(infoWindow, 'closeclick', function() {
         vectors[0].setVisible(true);
         vectors[1].setVisible(false);
         marker.setVisible(false);
     });
+};
+
+var removeWhiteBoxAroundInfoWindow = function(infoWindow) {
+    google.maps.event.addListener(infoWindow, 'domready', function(){
+        $('.gm-style-iw').prev('div').remove();
+    });
+};
+
+var clickVectorsToShowHideInfoWindow = function(infoWindow, vectors) {
+    var map;
     for (var i = 0; i < vectors.length; i++) {
         vectors[i].addListener('click', function() {
             map = infoWindow.getMap();
@@ -255,6 +311,49 @@ var linkVectors = function(vectorInactive, vectorActive, vectorFuture) {
         vectorInactive.setVisible(!vectorInactive.getVisible());
         vectorActive.setVisible(!vectorActive.getVisible());
     });
+};
+
+var updatedBoxValues = function() {
+    var client, data;
+    var total = 0;
+    var navieros = 0;
+    var terrestres = 0;
+    var importaciones = 0;
+    var exportaciones = 0;
+    $('div.option.active-option').each(function(i) {
+        client = CLIENTS[$(this).text().trim()];
+        for (i = 0; i < client.data.length; i++) {
+            total += 1;
+            if (client.data[i][IMP_EXP_POS] === 1) {
+                importaciones += 1;
+            } else if (client.data[i][IMP_EXP_POS] === 2) {
+                exportaciones += 1;
+            } else {
+                throw('Se esperaba `1` o `2` para valor de imp/exp.');
+            }
+            if (client.category === 'terrestre') {
+                terrestres += 1;
+            } else if (client.category === 'naviero') {
+                navieros += 1;
+            } else {
+                throw('Se esperaba `terrestre` o `naviero` para categoría.');
+            }
+        }
+    });
+    return {
+        numbers: [
+            terrestres,
+            navieros,
+            importaciones,
+            exportaciones
+        ],
+        percents: [
+            total ? terrestres / total * 100 : 0,
+            total ? navieros / total * 100 : 0,
+            total ? importaciones / total * 100: 0,
+            total ? exportaciones / total * 100: 0
+        ]
+    };
 };
 
 var initializeAsyncGlobalVariables = function() {
