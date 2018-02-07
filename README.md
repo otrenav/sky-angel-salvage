@@ -88,13 +88,12 @@ var HEATMAPS = {
 - [x] Etiquetas con mayor espacio para que no se lea como "todos terrestres"
 - [x] Poder ver a nivel de calles la ubicación de un vector (agregar colores)
 - [x] Eliminar vectores duplicados para no ver imágenes con "jitter"
-- [ ] Actualizar información de cajas cuando cambian los clientes
-    - TODO: Necesito la lógica de cómo deben cambiar
+- [x] Actualizar información de cajas cuando cambian los clientes
 
 #### Ajustes
 
-- [ ] Usar indicadores de importación (1) o exportación (2)
-- [ ] Para calcular el porcentaje recorrido debemos ussar aproximaciones dado
+- [x] Usar indicadores de importación (1) o exportación (2)
+- [x] Para calcular el porcentaje recorrido debemos usar aproximaciones dado
       los estimados de salida y llegada (objetos de fecha)
 - [x] Bug: cuando se desactiva y re-activa un "cliente", los tramos de vectores
       "activos" siguen estando activos y deberían estar "inactivos"
@@ -106,7 +105,6 @@ var HEATMAPS = {
 - [x] Arcor, Intermodal Maersk, Maersk c4, CIS, DHL Marítimo, Damco, Hellmann,
       Hamburg Sud, Jah, Mol, MSC y Naviero pertenecen a Navieros. Las demás
       pertenecen a terrestres.
-    - TODO: Verificar con Paris que ya tengo los valores correctos
 
 ### ARES
 
