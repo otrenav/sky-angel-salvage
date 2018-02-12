@@ -32,6 +32,15 @@ internas (observación) tiene los siguientes valores:
    Hellmann, Hamburg Sud, Jah, Mol, MSC y Naviero pertenecen a "navieros". Los
    demás pertenecen a "terrestres".
 
+   - Última información que hizo llegar José Luis especifíca:
+     - Navieros:
+       - ARC, C4, CIS, DCX, DHL, DMC, GEO, HEL, HSD
+       - JAH, MOL, MSC, MSK, NAV, SMT, SSA
+     - Terrestres:
+       - DHLT, NAVT, OIL, SUN
+     - Sin especificar:
+       - NTA
+
 ### ARES
 
 La estructura de datos es un diccionario de diccionarios, donde cada uno de los

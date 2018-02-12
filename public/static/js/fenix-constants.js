@@ -21,19 +21,19 @@ var CLIENTS = {
     DCX: {
         data: [],
         color: '#ab8ce4',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     DHL: {
         data: [],
         color: '#ffff99',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     DHLT: {
         data: [],
         color: '#01c0c8',
-        category: 'naviero',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     DMC: {
@@ -45,7 +45,7 @@ var CLIENTS = {
     GEO: {
         data: [],
         color: '#DA727E',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     HEL: {
@@ -81,7 +81,7 @@ var CLIENTS = {
     MSK: {
         data: [],
         color: '#ffa500',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     NAV: {
@@ -99,7 +99,7 @@ var CLIENTS = {
     NTA: {
         data: [],
         color: '#ffffff',
-        category: 'terrestre',
+        category: '',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     OIL: {
@@ -111,13 +111,13 @@ var CLIENTS = {
     SMT: {
         data: [],
         color: '#18CDCA',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     SSA: {
         data: [],
         color: '#4F80E1',
-        category: 'terrestre',
+        category: 'naviero',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     SUN: {
