@@ -169,16 +169,6 @@ var computePercent = function(row) {
 
 var createParams = function(row, client, percent, type) {
     var start, end;
-    var info = `
-        <div id="info-window">
-            <table>
-                <tr><td>ID:</td><td class="pull-right">${row[ID_POS]}</td></tr>
-                <tr><td>Salida:</td><td class="pull-right">${dateString(row[DATE_START_POS])}</td></tr>
-                <tr><td>Llegada:</td><td class="pull-right">${dateString(row[DATE_END_POS])}</td></tr>
-                <tr><td>Recorrido:</td><td class="pull-right">${percent}</td></tr>
-            </table>
-        </div>
-    `;
     var color = (
         type === 'active' ? ACTIVE_VECTOR_COLOR : CLIENTS[client].color
     );
@@ -191,12 +181,39 @@ var createParams = function(row, client, percent, type) {
         end = currentLocation;
     }
     return {
-        info: info,
+        info: buildInfo(row, percent),
         color: color,
         percent: percent,
         path: [start, end],
         arrow: type === 'future' ? true : false
     };
+};
+
+var buildInfo = function(row, percent) {
+    var info;
+    if (CLIENTS[row[CLIENT_POS]].category == 'naviero') {
+        info = `
+            <div id="info-window">
+                <table>
+                    <tr><td>ID:</td><td class="pull-right">${row[ID_POS]}</td></tr>
+                    <tr><td>Salida:</td><td class="pull-right">${dateString(row[DATE_START_POS])}</td></tr>
+                    <tr><td>Llegada:</td><td class="pull-right">${dateString(row[DATE_END_POS])}</td></tr>
+                    <tr><td>Recorrido:</td><td class="pull-right">${percent}</td></tr>
+                </table>
+            </div>
+        `;
+    } else {
+        info = `
+            <div id="info-window">
+                <table>
+                    <tr><td>ID:</td><td class="pull-right">${row[ID_POS]}</td></tr>
+                    <tr><td>Salida:</td><td class="pull-right">${dateString(row[DATE_START_POS])}</td></tr>
+                    <tr><td>Llegada:</td><td class="pull-right">${dateString(row[DATE_END_POS])}</td></tr>
+                </table>
+            </div>
+        `;
+    }
+    return info;
 };
 
 var dateString = function(date) {
