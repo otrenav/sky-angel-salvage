@@ -185,8 +185,17 @@ var createParams = function(row, client, percent, type) {
         color: color,
         percent: percent,
         path: [start, end],
-        arrow: type === 'future' ? true : false
+        arrow: hasArrow(type, percent)
     };
+};
+
+var hasArrow = function(type, percent) {
+    if (type === 'future' && percent !== '100%') {
+        return true;
+    } else if (type !== 'future' && percent === '100%') {
+        return true;
+    }
+    return false;
 };
 
 var buildInfo = function(row, percent) {
