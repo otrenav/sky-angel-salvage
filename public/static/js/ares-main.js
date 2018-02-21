@@ -12,16 +12,15 @@ var pageInit = function() {
 
 var heatmapToggleDay = function(day, div) {
     if (DAY_SELECTED !== '') {
-        resetDaySelection();
-    }
-    if (DAY_SELECTED === day) {
-        $(div).removeClass("option-enabled");
+        $("div.option-enabled").removeClass("option-enabled");
         heatmapHoursNone();
-        DAY_SELECTED = '';
-    } else {
+    }
+    if (DAY_SELECTED !== day) {
         $(div).addClass("option-enabled");
         DAY_SELECTED = day;
         heatmapHoursAll();
+    } else {
+        DAY_SELECTED = '';
     }
     updateBoxValues(updatedBoxValues());
 };
@@ -33,11 +32,12 @@ var heatmapToggleTime = function(time, div) {
         warning(false);
         if ($(div).hasClass("option-enabled")) {
             $(div).removeClass("option-enabled");
-            heatmapUpdateDayTime(DAY_SELECTED, time, null);
+            toggleDayTime(DAY_SELECTED, time, false);
         } else {
-            heatmapUpdateDayTime(DAY_SELECTED, time, MAP);
             $(div).addClass("option-enabled");
+            toggleDayTime(DAY_SELECTED, time, true);
         }
+        updateHeatmapData(DAY_SELECTED, true);
         updateBoxValues(updatedBoxValues());
     }
 };
@@ -47,8 +47,8 @@ var heatmapHoursAll = function() {
         warning(true);
     } else {
         warning(false);
-        heatmapsUpdateAllHoursForDay(DAY_SELECTED, MAP);
         $("div.hour-option").addClass("option-enabled");
+        heatmapsUpdateAllHoursForDay(DAY_SELECTED, true);
         updateBoxValues(updatedBoxValues());
     }
 };
@@ -56,26 +56,31 @@ var heatmapHoursAll = function() {
 var heatmapHoursNone = function() {
     warning(false);
     $("div.hour-option").removeClass("option-enabled");
-    heatmapsUpdateAllHoursForDay(DAY_SELECTED, null);
+    heatmapsUpdateAllHoursForDay(DAY_SELECTED, false);
     updateBoxValues(updatedBoxValues());
 };
 
-var heatmapsUpdateAllHoursForDay = function(day, obj) {
+var heatmapsUpdateAllHoursForDay = function(day, show) {
     for (var time in HEATMAPS[day]) {
-        if (HEATMAPS[day].hasOwnProperty(time)) {
-            heatmapUpdateDayTime(day, time, obj);
+        if (HEATMAPS[day].hasOwnProperty(time) &&
+            TIMES.indexOf(time) !== -1) {
+            toggleDayTime(day, time, show);
         }
     }
+    updateHeatmapData(day, show);
 };
 
-var heatmapUpdateDayTime = function(day, time, obj) {
-    HEATMAPS[day][time].googleMapsObject.setMap(obj);
+var toggleDayTime = function(day, time, show) {
+    HEATMAPS[day][time].active = show;
 };
 
-var resetDaySelection = function() {
-    warning(false);
-    heatmapHoursNone();
-    $("div.option").removeClass("option-enabled");
+var updateHeatmapData = function(day, show) {
+    if (show) {
+        HEATMAPS[day].googleMapsObject.setData(heatmapData(day));
+        HEATMAPS[day].googleMapsObject.setMap(MAP);
+    } else {
+        HEATMAPS[day].googleMapsObject.setMap(null);
+    }
 };
 
 var updatedBoxValues = function() {
@@ -95,30 +100,36 @@ var updatedBoxValues = function() {
     };
 };
 
+var heatmapData = function(day) {
+    var coordList;
+    var data = [];
+    for (var time in HEATMAPS[day]) {
+        if (HEATMAPS[day].hasOwnProperty(time) &&
+            TIMES.indexOf(time) !== -1 &&
+            HEATMAPS[day][time].active) {
+            coordsList = HEATMAPS[day][time].coords;
+            for(var i = 0; i < coordsList.length; i++) {
+                data.push(new google.maps.LatLng(
+                    coordsList[i][0], coordsList[i][1]
+                ));
+            }
+        }
+    }
+    return data;
+};
+
 var initializeHeatmaps = function() {
-    var heatmapData;
     for (var day in HEATMAPS) {
         if (HEATMAPS.hasOwnProperty(day)) {
-            for (var time in HEATMAPS[day]) {
-                if (HEATMAPS[day].hasOwnProperty(time)) {
-                    heatmapData = [];
-                    var coordsList = HEATMAPS[day][time].coords;
-                    for(var i = 0; i < coordsList.length; i++) {
-                        heatmapData.push(new google.maps.LatLng(
-                            coordsList[i][0], coordsList[i][1]
-                        ));
-                    }
-                    HEATMAPS[day][time].googleMapsObject = (
-                        new google.maps.visualization.HeatmapLayer({
-                            data: heatmapData,
-                            dissipating: true
-                        })
-                    );
-                    HEATMAPS[day][time].googleMapsObject.setOptions({
-                        radius: HEATMAPS[day][time].googleMapsObject.get('120')
-                    });
-                }
-            }
+            HEATMAPS[day].googleMapsObject = (
+                new google.maps.visualization.HeatmapLayer({
+                    data: heatmapData(day),
+                    dissipating: true
+                })
+            );
+            HEATMAPS[day].googleMapsObject.setOptions({
+                radius: HEATMAPS[day].googleMapsObject.get('120')
+            });
         }
     }
 };
