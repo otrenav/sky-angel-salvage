@@ -27,6 +27,16 @@ hr {
     border-color: #5e646d;
 }
 
+button {
+    background-color: #292e37;
+    border-color: #3c4452;
+    padding-bottom: 0.5em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+    padding-left: 2em;
+    color: #96a2b4;
+}
+
 #wrapper {
     height: 100%;
     width: 100%;
