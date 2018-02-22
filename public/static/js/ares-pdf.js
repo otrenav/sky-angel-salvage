@@ -225,14 +225,20 @@ var findZone = function(coords) {
     return null;
 };
 
-incidentsPerTime = function() {
+var incidentsPerTime = function() {
     var data = [['Hour', 'Frecuencia absoluta']];
     var day = DAY_SELECTED;
+    var n_incidents = 0;
     for (var time in HEATMAPS[day]) {
         if (HEATMAPS[day].hasOwnProperty(time) &&
             TIMES.indexOf(time) !== -1) {
-            data.push([time, HEATMAPS[day][time].coords.length]);
+            if (HEATMAPS[day][time].active) {
+                n_incidents = HEATMAPS[day][time].coords.length;
+            } else {
+                n_incidents = 0;
+            }
         }
+        data.push([time, n_incidents]);
     }
     return data;
 };
