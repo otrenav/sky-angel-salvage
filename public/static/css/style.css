@@ -77,6 +77,10 @@ button {
     color: #fb9678;
 }
 
+.hidden {
+    display: none;
+}
+
 .active-tab {
     background-color: #4c5665;
 }

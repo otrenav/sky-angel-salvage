@@ -6,9 +6,38 @@ TIMES = [
     '22:00', '23:00', '24:00'
 ];
 
+ZONES = {
+    Noroeste: {
+        topLeft:     [40, -119],
+        bottomRight: [22.5, -104]
+    },
+    Noreste:  {
+        topLeft:     [40, -104],
+        bottomRight: [22.5, -95]
+    },
+    Centro:   {
+        topLeft:     [23, -106.5],
+        bottomRight: [18.5, -95]
+    },
+    Sureste:  {
+        topLeft:     [22, -94],
+        bottomRight: [14, -86]
+    },
+    Suroeste: {
+        topLeft:     [18.5, -105.5],
+        bottomRight: [14.5, -94]
+    }
+};
+
 var HEATMAPS = {
     'Lunes': {
-        '01:00': { coords: [[20.11106791, -95.84941333]],  active: false },
+        '01:00': {
+            coords: [
+                [20.11106791, -95.84941333],
+                [20.11106791, -94.84941333]
+            ],
+            active: false
+        },
         '02:00': { coords: [[16.11106791, -95.84941333]],  active: false },
         '03:00': { coords: [[16.6816123, -101.35755553]],  active: false },
         '04:00': { coords: [[17.98524071, -98.6596144]],   active: false },
@@ -20,7 +49,13 @@ var HEATMAPS = {
         '10:00': { coords: [[20.06540032, -101.05188821]], active: false },
         '11:00': { coords: [[17.69398571, -101.23074249]], active: false },
         '12:00': { coords: [[28.04040261, -95.4937895]],   active: false },
-        '13:00': { coords: [[21.11106791, -99.84941333]],  active: false },
+        '13:00': {
+            coords: [
+                [21.11106791, -99.84941333],
+                [20.11106791, -98.84941333]
+            ],
+            active: false
+        },
         '14:00': { coords: [[30.11106791, -99.84941333]],  active: false },
         '15:00': { coords: [[19.6816123, -102.35755553]],  active: false },
         '16:00': { coords: [[16.98524071, -99.6596144]],   active: false },

@@ -234,11 +234,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="report-images" class="hidden">
+                                <div id="report-pie-chart"></div>
+                                <div id="report-time-series-chart"></div>
+                                <img id="report-image"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        <script src="./static/js/external/html2canvas.min.js"></script>
         <script src="./static/js/external/countUp.min.js"></script>
         <script src="./static/js/external/pdfmake.min.js"></script>
         <script src="./static/js/external/vfs_fonts.js"></script>
@@ -248,7 +254,8 @@
         <script src="./static/js/ares-main.js"></script>
         <script src="./static/js/ares-pdf.js"></script>
         <script src="./static/js/global-main.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfA8Ejblz1e7T9Eh-E8Qug0hpjMsPFH18&libraries=visualization,geometry&callback=init"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfA8Ejblz1e7T9Eh-E8Qug0hpjMsPFH18&libraries=visualization,geometry&callback=init&v=3.30"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script async src="https://www.gstatic.com/charts/loader.js"></script>
     </body>
 </html>
