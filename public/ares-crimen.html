@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" sizes="16x16" href="">
-        <title>Sky Angel / Ares</title>
+        <title>Sky Angel / Ares / Incidencias criminales</title>
         <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
         <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
         <link href="./static/css/style.css" rel="stylesheet">
@@ -15,10 +15,10 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div id="tabs" class="row">
-                        <div class="col-2 active-tab" onclick="location.href='./fenix.html';">
+                        <div class="col-2" onclick="location.href='./fenix.html';">
                             <h1>FENIX</h1>
                         </div>
-                        <div class="col-2" onclick="location.href='./ares-crimen.html';">
+                        <div class="col-2 active-tab" onclick="location.href='./ares-crimen.html';">
                             <h1>ARES</h1>
                         </div>
                         <div class="col-3" onclick="location.href='./marco-polo.html';">
@@ -41,24 +41,61 @@
                                 </div>
                                 <div class="col-lg-12 col-sm-8">
                                     <div class="box">
-                                        <div id="client-options" class="row">
+                                        <div class="row">
                                             <div class="col-12">
-                                                <h1 class="options-heading">Clientes</h1>
+                                                <h1 class="options-heading">Datos</h1>
                                             </div>
-                                            <div class="col-6" onclick="vectorsAll();">
-                                                <span class="general-option">Todos</span>
+                                            <div class="col-12">
+                                                <select onchange="location = this.value;">
+                                                    <option value="ares-crimen.html" selected>Crimen</option>
+                                                    <option value="ares-operacion.html">Operación</option>
+                                                </select>
                                             </div>
-                                            <div class="col-6" onclick="vectorsNone();">
-                                                <span class="general-option">Ninguno</span>
+                                        </div>
+                                        <hr>
+                                        <div id="day-options" class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Día</h1>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div id="time-options" class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Hora</h1>
+                                            </div>
+                                            <div id="select-a-day-warning"
+                                                 class="col-12" style="display: none">
+                                                Seleccione día.
+                                            </div>
+                                            <div class="col-6" onclick="heatmapHoursAll();">
+                                                <span class="group-option">Todas</span>
+                                            </div>
+                                            <div class="col-6" onclick="heatmapHoursNone();">
+                                                <span class="group-option">Ninguna</span>
                                             </div>
                                             <div class="col-12">&nbsp;</div>
-                                            <div class="col-6" onclick="vectorsTerrestres();">
-                                                <span id="terrestres" class="general-option">Terrestres</span>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h1 class="options-heading">Intensidad</h1>
                                             </div>
-                                            <div class="col-6" onclick="vectorsNavieros();">
-                                                <span id="navieros" class="general-option">Navieros</span>
+                                            <div class="col-12">
+                                                <img id="color-legend" src="static/img/ares-gradient.png" width="100%">
+                                                <div class="color-scale">
+                                                    <p style="float: left;">0</p>
+                                                    <p>0.5</p>
+                                                    <p style="float: right;">1</p>
+                                                </div>
                                             </div>
-                                            <div class="col-12">&nbsp;</div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button onclick="downloadReport('criminales')">
+                                                    <i class="fa fa-download"></i> Reporte
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +116,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h1 class="box-text text-muted">Terrestres</h1>
+                                                        <h1 class="box-text text-muted">Índice noroeste</h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,7 +147,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h1 class="box-text text-muted">Navieros</h1>
+                                                        <h1 class="box-text text-muted">Incidencias noroeste</h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,7 +178,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h1 class="box-text text-muted">Importaciones</h1>
+                                                        <h1 class="box-text text-muted">Índice centro</h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,7 +209,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h1 class="box-text text-muted">Exportaciones</h1>
+                                                        <h1 class="box-text text-muted">Incidencias centro</h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,18 +235,29 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="report-images" class="hidden">
+                                <div id="report-pie-chart"></div>
+                                <div id="report-time-series-chart"></div>
+                                <img id="report-image"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        <script>CURRENT_SELECTION = 'crimen';</script>
+        <script src="./static/js/external/html2canvas.min.js"></script>
         <script src="./static/js/external/countUp.min.js"></script>
+        <script src="./static/js/external/pdfmake.min.js"></script>
+        <script src="./static/js/external/vfs_fonts.js"></script>
         <script src="./static/js/external/jquery.min.js"></script>
         <script src="./static/js/global-constants.js"></script>
-        <script src="./static/js/fenix-constants.js"></script>
-        <script src="./static/js/fenix-main.js"></script>
+        <script src="./static/js/ares-constants.js"></script>
+        <script src="./static/js/ares-main.js"></script>
+        <script src="./static/js/ares-pdf.js"></script>
         <script src="./static/js/global-main.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfA8Ejblz1e7T9Eh-E8Qug0hpjMsPFH18&libraries=visualization,geometry&callback=init"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfA8Ejblz1e7T9Eh-E8Qug0hpjMsPFH18&libraries=visualization,geometry&callback=init&v=3.30"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script async src="https://www.gstatic.com/charts/loader.js"></script>
     </body>
 </html>

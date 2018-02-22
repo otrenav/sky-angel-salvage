@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" sizes="16x16" href="">
-        <title>Sky Angel / Ares</title>
+        <title>Sky Angel / Ares / Incidencias operacionales</title>
         <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
         <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
         <link href="./static/css/style.css" rel="stylesheet">
@@ -18,7 +18,7 @@
                         <div class="col-2" onclick="location.href='./fenix.html';">
                             <h1>FENIX</h1>
                         </div>
-                        <div class="col-2 active-tab" onclick="location.href='./ares.html';">
+                        <div class="col-2 active-tab" onclick="location.href='./ares-crimen.html';">
                             <h1>ARES</h1>
                         </div>
                         <div class="col-3" onclick="location.href='./marco-polo.html';">
@@ -46,8 +46,9 @@
                                                 <h1 class="options-heading">Datos</h1>
                                             </div>
                                             <div class="col-12">
-                                                <select>
-                                                    <option value="crimen" select>Crimen</option>
+                                                <select onchange="location = this.value;">
+                                                    <option value="ares-crimen.html">Crimen</option>
+                                                    <option value="ares-operacion.html" selected>Operación</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -77,7 +78,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-12">
-                                                <h1 class="options-heading">Intensidad del crimen</h1>
+                                                <h1 class="options-heading">Intensidad</h1>
                                             </div>
                                             <div class="col-12">
                                                 <img id="color-legend" src="static/img/ares-gradient.png" width="100%">
@@ -91,7 +92,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-12">
-                                                <button onclick="downloadReport()">
+                                                <button onclick="downloadReport('criminales')">
                                                     <i class="fa fa-download"></i> Reporte
                                                 </button>
                                             </div>
@@ -244,6 +245,7 @@
             </div>
         </div>
         </div>
+        <script>CURRENT_SELECTION = 'operacion';</script>
         <script src="./static/js/external/html2canvas.min.js"></script>
         <script src="./static/js/external/countUp.min.js"></script>
         <script src="./static/js/external/pdfmake.min.js"></script>

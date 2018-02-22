@@ -35,7 +35,7 @@ var content = function() {
     return {
         content: [
             {
-                text: 'Reporte de incidencias criminales',
+                text: 'Reporte de incidencias ' + currentSelection(),
                 style: 'heading_one'
             },
             {
@@ -99,6 +99,13 @@ var content = function() {
             }
         }
     };
+};
+
+var currentSelection = function() {
+    if (CURRENT_SELECTION === 'crimen') {
+        return 'criminales';
+    }
+    return 'operativas';
 };
 
 var concentrations = function() {
