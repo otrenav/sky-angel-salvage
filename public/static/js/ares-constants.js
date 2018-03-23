@@ -629,10 +629,13 @@ var addGeographicZones = function() {
 };
 
 var addGeographicLabels = function() {
-    addGeographicLabel('Distribución Geográfica de Incidencias', 34.5, -88.5, 20);
+    addGeographicLabel(
+        'Densidad Espacial de Incidencias por Zona',
+        34.5, -90, 20
+    );
     addGeographicLabel('ZONAS', 12, -123);
     addGeographicLabel('NW', 22.5, -120.5);
-    addGeographicLabel('NE', 32, -96);
+    addGeographicLabel('NE', 29.5, -93.5);
     addGeographicLabel('C', 19, -107.5);
     addGeographicLabel('SW', 14.5, -107);
     addGeographicLabel('SE', 17, -84.5);
@@ -655,21 +658,21 @@ var addGeographicZone = function(zone) {
     });
 };
 
-var addGeographicLabel = function(label, lat, lng, size=24) {
+var addGeographicLabel = function(label, lat, lng, size=24, align='right') {
     new google.maps.Marker({
         map: MAP_HIDDEN,
         position: new google.maps.LatLng(lat, lng),
-        icon: generateTextImage(label, size)
+        icon: generateTextImage(label, size, align)
     });
 };
 
-var generateTextImage = function(text, size=24) {
+var generateTextImage = function(text, size=24, align='right') {
     return TextImage({
         font: 'Sans-serif',
         background: 'rgba(0, 0, 0, 0)',
         strokeColor: '#FFFFFF',
         color: '#FFFFFF',
-        align: 'right',
+        align: align,
         stroke: 0,
         size: size
     }).toDataURL(text);

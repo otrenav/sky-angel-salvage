@@ -29,7 +29,7 @@ var downloadReport = function() {
 var updateGeographicConcentrations = function() {
     var zoneCounters = findZoneCounters();
     addGeographicLabel(concentration('NW', zoneCounters.NW), 24, -120.5, 18);
-    addGeographicLabel(concentration('NE', zoneCounters.NE), 33.3, -96.3, 18);
+    addGeographicLabel(concentration('NE', zoneCounters.NE), 31, -92.8, 18, 'left');
     addGeographicLabel(concentration('C', zoneCounters.C), 20.5, -109, 18);
     addGeographicLabel(concentration('SW', zoneCounters.SW), 16, -107.5, 18);
     addGeographicLabel(concentration('SE', zoneCounters.SE), 18.5, -84.5, 18);
