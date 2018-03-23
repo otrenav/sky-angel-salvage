@@ -1,4 +1,6 @@
 
+/* jshint esversion: 6 */
+
 var HEATMAPS;
 
 TIMES = [
@@ -9,25 +11,25 @@ TIMES = [
 ];
 
 ZONES = {
-    Noroeste: {
-        topLeft:     [40, -119],
+    NW: {
+        topLeft:     [35, -119],
         bottomRight: [22.5, -104]
     },
-    Noreste:  {
-        topLeft:     [40, -104],
+    NE:  {
+        topLeft:     [32, -104],
         bottomRight: [22.5, -95]
     },
-    Centro:   {
-        topLeft:     [23, -106.5],
-        bottomRight: [18.5, -95]
+    C:   {
+        topLeft:     [22.5, -106.5],
+        bottomRight: [19, -95]
     },
-    Sureste:  {
-        topLeft:     [22, -94],
-        bottomRight: [14, -86]
+    SW: {
+        topLeft:     [19, -105.5],
+        bottomRight: [14.5, -91]
     },
-    Suroeste: {
-        topLeft:     [18.5, -105.5],
-        bottomRight: [14.5, -94]
+    SE:  {
+        topLeft:     [22, -91],
+        bottomRight: [15, -86]
     }
 };
 
@@ -605,3 +607,68 @@ if (CURRENT_SELECTION === 'crimen') {
 } else {
     HEATMAPS = HEATMAPS_OPERACION;
 }
+
+var initMapHidden = function() {
+    MAP_HIDDEN = new google.maps.Map(document.getElementById('map-canvas-hidden'), {
+        center: { lat: 24, lng:-102 },
+        zoomControl: false,
+        styles: MAP_STYLES,
+        draggable: false,
+        zoom: 5
+    });
+    addGeographicZones();
+    addGeographicLabels();
+};
+
+var addGeographicZones = function() {
+    addGeographicZone(ZONES.NW);
+    addGeographicZone(ZONES.NE);
+    addGeographicZone(ZONES.C);
+    addGeographicZone(ZONES.SW);
+    addGeographicZone(ZONES.SE);
+};
+
+var addGeographicLabels = function() {
+    addGeographicLabel('NW', 22.5, -120.5);
+    addGeographicLabel('NE', 32, -96);
+    addGeographicLabel('C', 19, -107.5);
+    addGeographicLabel('SW', 14.5, -107);
+    addGeographicLabel('SE', 17, -84.5);
+};
+
+var addGeographicZone = function(zone) {
+    new google.maps.Rectangle({
+        map: MAP_HIDDEN,
+        strokeColor: 'white',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: 'white',
+        fillOpacity: 0.1,
+        bounds: {
+            north: zone.topLeft[0],
+            south: zone.bottomRight[0],
+            east: zone.bottomRight[1],
+            west: zone.topLeft[1]
+        }
+    });
+};
+
+var addGeographicLabel = function(label, lat, lng, size=24) {
+    new google.maps.Marker({
+        map: MAP_HIDDEN,
+        position: new google.maps.LatLng(lat, lng),
+        icon: generateTextImage(label, size)
+    });
+};
+
+var generateTextImage = function(text, size=24) {
+    return TextImage({
+        font: 'Sans-serif',
+        background: 'rgba(0, 0, 0, 0)',
+        strokeColor: '#FFFFFF',
+        color: '#FFFFFF',
+        align: 'right',
+        stroke: 0,
+        size: size
+    }).toDataURL(text);
+};

@@ -7,6 +7,7 @@ var GOOGLE_MAPS, TIME_SERIES, PIE;
 var GOOGLE_CHARTS_HAS_BEEN_LOADED = false;
 
 var downloadReport = function() {
+    updateGeographicConcentrations();
     if (DAY_SELECTED === '') {
         warning(true);
     } else {
@@ -25,6 +26,15 @@ var downloadReport = function() {
     }
 };
 
+var updateGeographicConcentrations = function() {
+    var zoneCounters = findZoneCounters();
+    addGeographicLabel(concentration('NW', zoneCounters.NW), 24, -120.5, 18);
+    addGeographicLabel(concentration('NE', zoneCounters.NE), 33.5, -96.5, 18);
+    addGeographicLabel(concentration('C', zoneCounters.C), 20.5, -108.5, 18);
+    addGeographicLabel(concentration('SW', zoneCounters.SW), 16, -107.5, 18);
+    addGeographicLabel(concentration('SE', zoneCounters.SE), 18.5, -84.5, 18);
+};
+
 var generateImages = function() {
     timeSeriesChart();
     pieChart();
@@ -35,68 +45,156 @@ var content = function() {
     return {
         content: [
             {
-                text: 'Reporte de incidencias ' + currentSelection(),
-                style: 'heading_one'
+                columns: [
+                    {
+                        width: '15%',
+                        stack: [
+                            {
+                                image: LOGO,
+                                style: 'logo',
+                                width: 40
+                            }
+                        ]
+                    },
+                    {
+                        width: '50%',
+                        stack: [
+                            {
+                                text: 'ARES | Atlas de Riesgos \n',
+                                style: 'title'
+                            },
+                            {
+                                text: ('Reporte de incidencias ' +
+                                       currentSelection()),
+                                style: 'report_name'
+                            },
+                        ]
+                    },
+                    {
+                        width: '35%',
+                        text: ('Apellido, Nombre \n\n ' +
+                               '17:10 de 15/03/2018'),
+                        style: 'metadata'
+                    }
+                ],
+                columnGap: 0
             },
             {
-                style: 'centered',
+                style: 'daytimes',
                 table: {
-                    widths: [ '10%', '90%'],
+                    widths: [ '15%', '85%'],
                     body: [
-                        [ 'Día', DAY_SELECTED],
-                        [ 'Horas', selectedHours() ],
+                        [ { text: 'Día', bold: true },
+                          { text: 'Horas', bold: true } ],
+                        [ DAY_SELECTED, selectedHours() ],
                     ]
                 }
             },
             {
-                style: 'centered',
                 table: {
-                    widths: [ '25%', '15%', '15%', '15%', '15%', '15%'],
-                    body: concentrations()
+                    widths: [ '100%' ],
+                    body: [[{
+                        style: 'map',
+                        image: GOOGLE_MAPS,
+                        height: 328,
+                        width: 585
+                    }]]
                 }
             },
             {
-                columns: [
-                    {
-                        width: '60%',
-                        stack: [
-                            {
-                                image: GOOGLE_MAPS,
-                                style: 'centered',
-                                width: 270
-                            }
-                        ]
-                    },
-                    {
-                        width: '40%',
-                        stack: [
-                            {
-                                image: PIE,
-                                style: 'centered',
-                                width: 250
-                            }
-                        ]
-                    },
-                ],
-                columnGap: 10
+                style: 'graphs',
+                table: {
+                    widths: [ '40%', '60%' ],
+                    body: [
+                        [ 'Distribución de incidencias',
+                          'Número de incidencias por hora' ],
+                        [ { image: PIE, width: 200 },
+                          { image: TIME_SERIES, width: 340 } ]
+                    ]
+                }
             },
             {
-                image: TIME_SERIES,
-                style: 'centered',
-                width: 600
-            }
+                table: {
+                    widths: [ '100%' ],
+                    body: [[{
+                        text: 'Observaciones: \n\n\n\n\n',
+                        style: 'observations'
+                    }]]
+                }
+            },
+            {
+                text: ('© Copyright. All rights reserved. Esta es' +
+                       ' información confidencial de grado superior' +
+                       ' perteneciente a Ska Tracking and Security S.A. de C.V.'),
+                style: 'footnote'
+            },
         ],
         styles: {
-            heading_one: {
-                alignment: 'center',
-                fontSize: 22,
-                margin: 10,
+            logo: {
+                margin: [10, 20, 0, 0],
+                alignment: 'center'
+            },
+            title: {
+                margin: [10, 20, 0, 0],
+                color: 'white',
+                fontSize: 20,
                 bold: true
             },
-            centered: {
+            report_name: {
+                margin: [10, 5, 0, 0],
+                color: 'white',
+                fontSize: 16
+            },
+            metadata: {
+                margin: [0, 20, 20, 0],
+                alignment: 'right',
+                color: '#DDDDDD',
+                fontSize: 12
+            },
+            daytimes: {
+                margin: [0, 20, 0, 0],
                 alignment: 'center',
-                margin: [0, 10]
+                color: '#324c92',
+                fontSize: 14
+            },
+            map: {
+                margin: [-14, -2, -2, -4]
+            },
+            graphs: {
+                alignment: 'center',
+                color: '#324c92',
+                fontSize: 12,
+                bold: true
+            },
+            observations: {
+                margin: [5, 5, 0, 0],
+                alignment: 'left',
+                fontSize: 14,
+                color: '#324c92',
+                bold: true
+            },
+            footnote: {
+                margin: [0, 10, 0, 0],
+                alignment: 'center',
+                color: '#777777',
+                fontSize: 9,
+                bold: false
+            },
+            centered: {
+                alignment: 'center'
             }
+        },
+        pageMargins: [ 10, 10, 10, 10 ],
+        background: function () {
+            return {
+	            canvas: [
+				    {
+					    type: 'rect',
+					    x: 10, y: 10, w: 575, h: 89,
+					    color: '#284c92'
+				    }
+			    ]
+	        };
         }
     };
 };
@@ -140,13 +238,28 @@ var area = function(zone) {
 var pieChart = function() {
     var data = google.visualization.arrayToDataTable(incidentsPerZone());
     var options = {
-        title: 'Frecuencia relativa',
-        height: 300,
-        width: 300,
+        color: '#324c92',
+        fontSize: 16,
+        height: 250,
+        width: 250,
         chartArea: {
             width: '80%',
             height: '80%'
-        }
+        },
+        legend: {
+            textStyel: {
+                fontSize: 14
+            },
+            position: 'bottom',
+            maxLines: 2
+        },
+        colors:[
+            '#305297',
+            '#3c63b2',
+            '#4671ca',
+            '#91a3d8',
+            '#bcc5e5'
+        ]
     };
     var chart = new google.visualization.PieChart(
         document.getElementById('report-pie-chart')
@@ -160,11 +273,41 @@ var pieChart = function() {
 var timeSeriesChart = function() {
     var data = google.visualization.arrayToDataTable(incidentsPerTime());
     var options = {
-        title: 'Incidentes por hora',
-        legend: { position: 'none' },
+        color: '#324c92',
+        fontSize: 18,
+        lineWidth: 3,
         curveType: 'function',
-        height: 200,
-        width: 650
+        height: 270,
+        width: 470,
+        chartArea: {
+            width: '80%',
+            height: '60%'
+        },
+        legend: {
+            position: 'none'
+        },
+        hAxis: {
+            slantedTextAngle: 90,
+            textStyle: {
+                color: '#324c92',
+                fontSize: 16
+            }
+        },
+        vAxis: {
+            textStyle: {
+                color: '#324c92',
+                fontSize: 16
+            }
+        },
+        trendlines: {
+            0: {
+                type: 'linear',
+                color: 'red',
+                lineWidth: 3,
+                opacity: 0.3,
+                showR2: true
+            }
+        }
     };
     var chart = new google.visualization.LineChart(
         document.getElementById('report-time-series-chart')
@@ -178,10 +321,17 @@ var timeSeriesChart = function() {
 incidentsPerZone = function() {
     var zoneCounters = findZoneCounters();
     var data = [['Zona', 'Frecuencia relativa']];
+    var orderedData = [];
     for (var zone in zoneCounters) {
         if (zoneCounters.hasOwnProperty(zone)) {
-            data.push([zone, zoneCounters[zone]]);
+            orderedData.push([zone, zoneCounters[zone]]);
         }
+    }
+    orderedData.sort(function(a, b) {
+        return a[1] < b[1];
+    });
+    for (var i = 0; i < orderedData.length; i++) {
+        data.push(orderedData[i]);
     }
     return data;
 };
@@ -189,7 +339,7 @@ incidentsPerZone = function() {
 var findZoneCounters = function() {
     var zone;
     var zoneCounters = {
-        Noroeste: 0, Noreste: 0, Centro: 0, Sureste: 0, Suroeste: 0
+        NW: 0, NE: 0, C: 0, SE: 0, SW: 0
     };
     var day = DAY_SELECTED;
     for (var time in HEATMAPS[day]) {
@@ -237,15 +387,15 @@ var incidentsPerTime = function() {
             } else {
                 n_incidents = 0;
             }
+            data.push([time, n_incidents]);
         }
-        data.push([time, n_incidents]);
     }
     return data;
 };
 
 var mapImage = function() {
     html2canvas(
-        document.querySelector("#map"),
+        document.querySelector("#map-hidden"),
         { allowTaint: false, useCORS: true, logging: false }
     ).then(canvas => {
         GOOGLE_MAPS = canvas.toDataURL("image/png");

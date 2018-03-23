@@ -1,6 +1,7 @@
 
 //
-// NOTE: Global-space objects: `HEATMAPS`, `MAP`, `updateBoxValues()`
+// NOTE: Global-space objects: `HEATMAPS`, `MAP`,
+//       `MAP_HIDDEN`, `updateBoxValues()`
 //
 
 var DAY_SELECTED = '';
@@ -8,6 +9,7 @@ var DAY_SELECTED = '';
 var pageInit = function() {
     insertOptions();
     initializeHeatmaps();
+    initMapHidden();
 };
 
 var heatmapToggleDay = function(day, div) {
@@ -76,10 +78,13 @@ var toggleDayTime = function(day, time, show) {
 
 var updateHeatmapData = function(day, show) {
     if (show) {
-        HEATMAPS[day].googleMapsObject.setData(heatmapData(day));
-        HEATMAPS[day].googleMapsObject.setMap(MAP);
+        HEATMAPS[day].googleMapsShown.setData(heatmapData(day));
+        HEATMAPS[day].googleMapsShown.setMap(MAP);
+        HEATMAPS[day].googleMapsHidden.setData(heatmapData(day));
+        HEATMAPS[day].googleMapsHidden.setMap(MAP_HIDDEN);
     } else {
-        HEATMAPS[day].googleMapsObject.setMap(null);
+        HEATMAPS[day].googleMapsShown.setMap(null);
+        HEATMAPS[day].googleMapsHidden.setMap(null);
     }
 };
 
@@ -121,17 +126,22 @@ var heatmapData = function(day) {
 var initializeHeatmaps = function() {
     for (var day in HEATMAPS) {
         if (HEATMAPS.hasOwnProperty(day)) {
-            HEATMAPS[day].googleMapsObject = (
-                new google.maps.visualization.HeatmapLayer({
-                    data: heatmapData(day),
-                    dissipating: true
-                })
-            );
-            HEATMAPS[day].googleMapsObject.setOptions({
-                radius: HEATMAPS[day].googleMapsObject.get('120')
-            });
+            initializeMap(day, 'googleMapsShown');
+            initializeMap(day, 'googleMapsHidden');
         }
     }
+};
+
+var initializeMap = function(day, mapName) {
+    HEATMAPS[day][mapName] = (
+        new google.maps.visualization.HeatmapLayer({
+            data: heatmapData(day),
+            dissipating: true
+        })
+    );
+    HEATMAPS[day][mapName].setOptions({
+        radius: HEATMAPS[day][mapName].get('120')
+    });
 };
 
 var insertOptions = function() {
