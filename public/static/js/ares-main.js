@@ -7,10 +7,29 @@
 var DAY_SELECTED = '';
 
 var pageInit = function() {
+    overrideTopBoxes();
     insertOptions();
     initializeHeatmaps();
     initMapHidden();
     setupPDFTables();
+};
+
+var overrideTopBoxes = function() {
+    var opts = { suffix: '%' };
+    BOX_VALUES = [
+        new CountUp("box-int-one", 0, 0, 0, 2, opts),
+        new CountUp("box-int-two", 0, 0, 0, 2, opts),
+        new CountUp("box-int-three", 0, 0, 0, 2, opts),
+        new CountUp("box-int-four", 0, 0, 0, 2, opts),
+        new CountUp("box-int-five", 0, 0, 0, 2, opts)
+    ];
+    for (var i = 0; i < BOX_VALUES.length; i++) {
+        if (!BOX_VALUES[i].error) {
+            BOX_VALUES[i].start();
+        } else {
+            console.error(BOX_VALUES[i].error);
+        }
+    }
 };
 
 var heatmapToggleDay = function(day, div) {
