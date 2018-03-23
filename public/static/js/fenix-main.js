@@ -5,6 +5,7 @@
 
 var ARROW, LOCATION;
 var ACTIVE_VECTOR_COLOR = '#EEEEEE';
+var ENABLED_24_HOURS = false;
 
 //
 // Positions in data observations
@@ -57,6 +58,17 @@ var vectorsTerrestres = function() {
 var vectorsNavieros = function() {
     toggleVectorsInCategory('naviero', '#fb9678');
     updateBoxValues(updatedBoxValues());
+};
+
+var toggle24Hours = function() {
+    ENABLED_24_HOURS = !ENABLED_24_HOURS;
+    if (ENABLED_24_HOURS) {
+        $("#24-hours").css('color', '#00c292');
+        CLIENTS_NOW = CLIENTS_24H;
+    } else {
+        $("#24-hours").css('color', '#96a2b4');
+        CLIENTS_NOW = CLIENTS;
+    }
 };
 
 var toggleVectorsInCategory = function(category, color) {
