@@ -248,19 +248,12 @@ var buildInfo = function(row, percent) {
 
 var dateString = function(date) {
     year = date.getFullYear();
-    month = twoZeros(date.getMonth());
-    day = twoZeros(date.getDate());
+    month = twoDigits(date.getMonth());
+    day = twoDigits(date.getDate());
     hour = date.getHours();
     min = date.getMinutes();
     return (hour + ':' + min + '&nbsp;&nbsp;' +
             day + '/' + month + '/' + year);
-};
-
-var twoZeros = function(int) {
-    if (int < 10) {
-        return '0' + int;
-    }
-    return '' + int;
 };
 
 var locationCoordinates = function(row, percent) {

@@ -33,3 +33,10 @@ var updateBoxValue = function(position, number) {
 var updateBoxPercent = function(position, percent) {
     $('#progress-percent-' + (position + 1)).css('width', percent + '%');
 };
+
+var twoDigits = function(int) {
+    if (int < 10) {
+        return '0' + int;
+    }
+    return '' + int;
+};

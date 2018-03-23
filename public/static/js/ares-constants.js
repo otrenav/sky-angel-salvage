@@ -629,6 +629,8 @@ var addGeographicZones = function() {
 };
 
 var addGeographicLabels = function() {
+    addGeographicLabel('Distribución Geográfica de Incidencias', 34.5, -88.5, 20);
+    addGeographicLabel('ZONAS', 12, -123);
     addGeographicLabel('NW', 22.5, -120.5);
     addGeographicLabel('NE', 32, -96);
     addGeographicLabel('C', 19, -107.5);

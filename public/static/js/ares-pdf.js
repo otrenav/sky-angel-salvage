@@ -29,8 +29,8 @@ var downloadReport = function() {
 var updateGeographicConcentrations = function() {
     var zoneCounters = findZoneCounters();
     addGeographicLabel(concentration('NW', zoneCounters.NW), 24, -120.5, 18);
-    addGeographicLabel(concentration('NE', zoneCounters.NE), 33.5, -96.5, 18);
-    addGeographicLabel(concentration('C', zoneCounters.C), 20.5, -108.5, 18);
+    addGeographicLabel(concentration('NE', zoneCounters.NE), 33.3, -96.3, 18);
+    addGeographicLabel(concentration('C', zoneCounters.C), 20.5, -109, 18);
     addGeographicLabel(concentration('SW', zoneCounters.SW), 16, -107.5, 18);
     addGeographicLabel(concentration('SE', zoneCounters.SE), 18.5, -84.5, 18);
 };
@@ -64,7 +64,7 @@ var content = function() {
                                 style: 'title'
                             },
                             {
-                                text: ('Reporte de incidencias ' +
+                                text: ('Reporte de Incidencias ' +
                                        currentSelection()),
                                 style: 'report_name'
                             },
@@ -72,8 +72,7 @@ var content = function() {
                     },
                     {
                         width: '35%',
-                        text: ('Apellido, Nombre \n\n ' +
-                               '17:10 de 15/03/2018'),
+                        text: 'Apellido, Nombre \n\n ' + timeAndDay(),
                         style: 'metadata'
                     }
                 ],
@@ -106,7 +105,7 @@ var content = function() {
                 table: {
                     widths: [ '40%', '60%' ],
                     body: [
-                        [ 'Distribución de incidencias',
+                        [ 'Concentración de incidencias',
                           'Número de incidencias por hora' ],
                         [ { image: PIE, width: 200 },
                           { image: TIME_SERIES, width: 340 } ]
@@ -201,9 +200,9 @@ var content = function() {
 
 var currentSelection = function() {
     if (CURRENT_SELECTION === 'crimen') {
-        return 'criminales';
+        return 'de Crimen';
     }
-    return 'operativas';
+    return 'Operativas';
 };
 
 var concentrations = function() {
@@ -418,4 +417,13 @@ var selectedHours = function() {
         return 'Todo el día';
     }
     return hours;
+};
+
+var timeAndDay = function() {
+    var d = new Date();
+    return (twoDigits(d.getHours()) + ':' +
+            twoDigits(d.getMinutes()) + ' de ' +
+            twoDigits(d.getDate()) + '/' +
+            twoDigits(d.getMonth() + 1) + '/' +
+            d.getFullYear());
 };
