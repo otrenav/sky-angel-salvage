@@ -1,4 +1,6 @@
 
+/* jshint esversion: 6 */
+
 //
 // NOTE: Global-space objects: `MAP`, `updateBoxValues()`
 //
@@ -6,6 +8,7 @@
 var ARROW, LOCATION;
 var ACTIVE_VECTOR_COLOR = '#EEEEEE';
 var ENABLED_24_HOURS = false;
+var INITIALIZED = false;
 
 //
 // Positions in data observations
@@ -20,10 +23,13 @@ var DATE_START_POS = 6;
 var DATE_END_POS = 7;
 var CLIENT_POS = 8;
 
-var pageInit = function() {
-    insertClientOptions();
-    initializeAsyncGlobalVariables();
-    initializeClients();
+var pageInit = function(data=DATA) {
+    if (!INITIALIZED) {
+        initializeAsyncGlobalVariables();
+        insertClientOptions();
+        INITIALIZED = true;
+    }
+    initializeClients(data);
 };
 
 var vectorsAll = function() {
@@ -64,10 +70,12 @@ var toggle24Hours = function() {
     ENABLED_24_HOURS = !ENABLED_24_HOURS;
     if (ENABLED_24_HOURS) {
         $("#24-hours").css('color', '#00c292');
-        CLIENTS_NOW = CLIENTS_24H;
+        vectorsNone();
+        pageInit(DATA_24H);
     } else {
         $("#24-hours").css('color', '#96a2b4');
-        CLIENTS_NOW = CLIENTS;
+        vectorsNone();
+        pageInit(DATA);
     }
 };
 
@@ -131,11 +139,12 @@ updateVectorGroup = function(group, obj, color) {
     }
 };
 
-var initializeClients = function(row) {
-    var client, params, percent;
-    for (var i = 0; i < DATA.length; i++) {
-        row = DATA[i];
-        client = DATA[i][CLIENT_POS];
+var initializeClients = function(data) {
+    CLIENTS = $.extend(true, {}, CLIENTS_BASE);
+    var client, params, percent, row;
+    for (var i = 0; i < data.length; i++) {
+        row = data[i];
+        client = data[i][CLIENT_POS];
         CLIENTS[client].data.push(row);
         percent = computePercent(row);
 
