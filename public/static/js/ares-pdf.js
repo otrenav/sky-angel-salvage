@@ -326,7 +326,7 @@ incidentsPerZone = function() {
     var data = [['Zona', 'Frecuencia relativa']];
     var orderedData = [];
     for (var zone in zoneCounters) {
-        if (zoneCounters.hasOwnProperty(zone)) {
+        if (zoneCounters.hasOwnProperty(zone) && zone !== 'total') {
             orderedData.push([zone, zoneCounters[zone]]);
         }
     }
