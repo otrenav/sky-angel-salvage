@@ -10,6 +10,7 @@ var pageInit = function() {
     insertOptions();
     initializeHeatmaps();
     initMapHidden();
+    setupPDFTables();
 };
 
 var heatmapToggleDay = function(day, div) {
@@ -187,4 +188,17 @@ var warning = function(boolean) {
     } else {
         $('#select-a-day-warning').css('display', 'none');
     }
+};
+
+var setupPDFTables = function() {
+    pdfMake.tableLayouts = {
+        customBorderColor: {
+            hLineColor: function (i) {
+                return '#151F4A';
+            },
+            vLineColor: function (i) {
+                return '#151F4A';
+            }
+        }
+    };
 };

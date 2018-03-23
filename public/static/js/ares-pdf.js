@@ -80,6 +80,7 @@ var content = function() {
             },
             {
                 style: 'daytimes',
+                layout: 'customBorderColor',
                 table: {
                     widths: [ '15%', '85%'],
                     body: [
@@ -90,6 +91,7 @@ var content = function() {
                 }
             },
             {
+                layout: 'customBorderColor',
                 table: {
                     widths: [ '100%' ],
                     body: [[{
@@ -102,6 +104,7 @@ var content = function() {
             },
             {
                 style: 'graphs',
+                layout: 'customBorderColor',
                 table: {
                     widths: [ '40%', '60%' ],
                     body: [
@@ -113,10 +116,11 @@ var content = function() {
                 }
             },
             {
+                layout: 'customBorderColor',
                 table: {
                     widths: [ '100%' ],
                     body: [[{
-                        text: 'Observaciones: \n\n\n\n\n',
+                        text: 'Observaciones: \n\n\n\n',
                         style: 'observations'
                     }]]
                 }
@@ -409,13 +413,15 @@ var selectedHours = function() {
         if (HEATMAPS[day].hasOwnProperty(time) &&
             TIMES.indexOf(time) !== -1 &&
             HEATMAPS[day][time].active) {
-            hours += time + ' ';
+            hours += time + ' , ';
             counter += 1;
         }
     }
     if (counter === 24) {
         return 'Todo el día';
     }
+    // Remove last coma (' , ') from hours
+    hours = hours.substr(0, hours.length - 3);
     return hours;
 };
 
