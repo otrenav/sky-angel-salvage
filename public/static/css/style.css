@@ -209,6 +209,17 @@ button {
     float: right;
 }
 
+#top-boxes {
+    margin-right: 0.3em;
+    margin-left: 0.1em;
+    display: flex;
+    flex-flow: row;
+}
+
+#top-boxes > div {
+    margin-right: 1em;
+}
+
 .box, input, select {
     background: #353c48;
 }

@@ -5,7 +5,8 @@ var BOX_VALUES = [
     new CountUp("box-int-one", 0, 0),
     new CountUp("box-int-two", 0, 0),
     new CountUp("box-int-three", 0, 0),
-    new CountUp("box-int-four", 0, 0)
+    new CountUp("box-int-four", 0, 0),
+    new CountUp("box-int-five", 0, 0)
 ];
 
 var MAP_STYLES = [

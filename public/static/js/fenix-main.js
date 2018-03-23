@@ -385,13 +385,15 @@ var updatedBoxValues = function() {
             terrestres,
             navieros,
             importaciones,
-            exportaciones
+            exportaciones,
+            total
         ],
         percents: [
             total ? terrestres / total * 100 : 0,
             total ? navieros / total * 100 : 0,
             total ? importaciones / total * 100: 0,
-            total ? exportaciones / total * 100: 0
+            total ? exportaciones / total * 100: 0,
+            total ? 100 : 0
         ]
     };
 };

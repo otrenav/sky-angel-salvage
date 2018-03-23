@@ -90,19 +90,17 @@ var updateHeatmapData = function(day, show) {
 };
 
 var updatedBoxValues = function() {
+    var zoneCounters = findZoneCounters();
+    var percents = [
+        zoneCounters.NW > 0 ? zoneCounters.NW / zoneCounters.total * 100 : 0,
+        zoneCounters.NE > 0 ? zoneCounters.NE / zoneCounters.total * 100 : 0,
+        zoneCounters.C > 0 ? zoneCounters.C / zoneCounters.total * 100 : 0,
+        zoneCounters.SW > 0 ? zoneCounters.SW / zoneCounters.total * 100 : 0,
+        zoneCounters.SE > 0 ? zoneCounters.SE / zoneCounters.total * 100 : 0
+    ];
     return {
-        numbers: [
-            Math.floor(Math.random() * 1000),
-            Math.floor(Math.random() * 1000),
-            Math.floor(Math.random() * 1000),
-            Math.floor(Math.random() * 1000)
-        ],
-        percents: [
-            Math.floor(Math.random() * 100),
-            Math.floor(Math.random() * 100),
-            Math.floor(Math.random() * 100),
-            Math.floor(Math.random() * 100)
-        ]
+        numbers: percents,
+        percents: percents
     };
 };
 
@@ -201,4 +199,46 @@ var setupPDFTables = function() {
             }
         }
     };
+};
+
+var findZoneCounters = function() {
+    var zone;
+    var total = 0;
+    var zoneCounters = {
+        NW: 0, NE: 0, C: 0, SE: 0, SW: 0
+    };
+    var day = DAY_SELECTED;
+    for (var time in HEATMAPS[day]) {
+        if (HEATMAPS[day].hasOwnProperty(time) &&
+            TIMES.indexOf(time) !== -1 &&
+            HEATMAPS[day][time].active) {
+            for (var i = 0; i < HEATMAPS[day][time].coords.length; i++) {
+                zone = findZone(HEATMAPS[day][time].coords[i]);
+                total += 1;
+                if (zone != null) {
+                    zoneCounters[zone] += 1;
+                }
+            }
+        }
+    }
+    zoneCounters.total = total;
+    return zoneCounters;
+};
+
+var findZone = function(coords) {
+    for (var zone in ZONES) {
+        if (ZONES.hasOwnProperty(zone)) {
+            if (coords[0] <= ZONES[zone].topLeft[0] &&
+                coords[0] >= ZONES[zone].bottomRight[0] &&
+                coords[1] >= ZONES[zone].topLeft[1] &&
+                coords[1] <= ZONES[zone].bottomRight[1]) {
+                return zone;
+            }
+        }
+    }
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    console.log("Warning: Unspecified zone for");
+    console.log(coords);
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    return null;
 };

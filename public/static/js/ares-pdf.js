@@ -209,17 +209,17 @@ var currentSelection = function() {
     return 'Operativas';
 };
 
-var concentrations = function() {
-    var zoneCounters = findZoneCounters();
-    var concentrations = [['Zona'], ['Concentración']];
-    for (var zone in zoneCounters) {
-        if (zoneCounters.hasOwnProperty(zone)) {
-            concentrations[0].push(zone);
-            concentrations[1].push(concentration(zone, zoneCounters[zone]));
-        }
-    }
-    return concentrations;
-};
+// var concentrations = function() {
+//     var zoneCounters = findZoneCounters();
+//     var concentrations = [['Zona'], ['Concentración']];
+//     for (var zone in zoneCounters) {
+//         if (zoneCounters.hasOwnProperty(zone)) {
+//             concentrations[0].push(zone);
+//             concentrations[1].push(concentration(zone, zoneCounters[zone]));
+//         }
+//     }
+//     return concentrations;
+// };
 
 var concentration = function(zone, count) {
     return round(count * 150 / (24 * area(zone)), 2) + ' %';
@@ -337,45 +337,6 @@ incidentsPerZone = function() {
         data.push(orderedData[i]);
     }
     return data;
-};
-
-var findZoneCounters = function() {
-    var zone;
-    var zoneCounters = {
-        NW: 0, NE: 0, C: 0, SE: 0, SW: 0
-    };
-    var day = DAY_SELECTED;
-    for (var time in HEATMAPS[day]) {
-        if (HEATMAPS[day].hasOwnProperty(time) &&
-            TIMES.indexOf(time) !== -1 &&
-            HEATMAPS[day][time].active) {
-            for (var i = 0; i < HEATMAPS[day][time].coords.length; i++) {
-                zone = findZone(HEATMAPS[day][time].coords[i]);
-                if (zone != null) {
-                    zoneCounters[zone] += 1;
-                }
-            }
-        }
-    }
-    return zoneCounters;
-};
-
-var findZone = function(coords) {
-    for (var zone in ZONES) {
-        if (ZONES.hasOwnProperty(zone)) {
-            if (coords[0] <= ZONES[zone].topLeft[0] &&
-                coords[0] >= ZONES[zone].bottomRight[0] &&
-                coords[1] >= ZONES[zone].topLeft[1] &&
-                coords[1] <= ZONES[zone].bottomRight[1]) {
-                return zone;
-            }
-        }
-    }
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    console.log("Warning: Unspecified zone for");
-    console.log(coords);
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    return null;
 };
 
 var incidentsPerTime = function() {
