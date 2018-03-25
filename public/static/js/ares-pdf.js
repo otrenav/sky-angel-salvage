@@ -248,6 +248,7 @@ var pieChart = function() {
                 fontSize: 30
             }
         },
+        pieSliceText: 'none',
         colors:[
             '#305297',
             '#3c63b2',
