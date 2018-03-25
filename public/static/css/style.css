@@ -65,10 +65,10 @@ button {
 }
 
 #map-hidden {
-    position: absolute;
     height: 660px;
     width: 1160px;
     /* We need to hide this without using `display: none` */
+    position: absolute;
     left: -10000px;
     top: 0;
 }
@@ -217,6 +217,10 @@ button {
 }
 
 #top-boxes > div {
+    flex-grow: 1;
+}
+
+#top-boxes > div:not(:last-child) {
     margin-right: 1em;
 }
 

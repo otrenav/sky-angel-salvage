@@ -376,7 +376,7 @@ var updatedBoxValues = function() {
             } else if (client.category === 'naviero') {
                 navieros += 1;
             } else {
-                throw('Se esperaba `terrestre` o `naviero` para categoría.');
+                throw('Se esperaba `terrestre` o `naviero` para categoria.');
             }
         }
     });

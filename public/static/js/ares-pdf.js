@@ -84,7 +84,7 @@ var content = function() {
                 table: {
                     widths: [ '15%', '85%'],
                     body: [
-                        [ { text: 'Día', bold: true },
+                        [ { text: 'Dia', bold: true },
                           { text: 'Horas', bold: true } ],
                         [ DAY_SELECTED, selectedHours() ],
                     ]
@@ -108,10 +108,10 @@ var content = function() {
                 table: {
                     widths: [ '40%', '60%' ],
                     body: [
-                        [ 'Concentración de incidencias',
-                          'Número de incidencias por hora' ],
-                        [ { image: PIE, width: 200 },
-                          { image: TIME_SERIES, width: 340 } ]
+                        [ 'Concentracion de incidencias',
+                          'Numero de incidencias por hora' ],
+                        [ { image: PIE, width: 200, style: 'pie' },
+                          { image: TIME_SERIES, width: 340, style: 'time_series' } ]
                     ]
                 }
             },
@@ -127,7 +127,7 @@ var content = function() {
             },
             {
                 text: ('© Copyright. All rights reserved. Esta es' +
-                       ' información confidencial de grado superior' +
+                       ' informacion confidencial de grado superior' +
                        ' perteneciente a Ska Tracking and Security S.A. de C.V.'),
                 style: 'footnote'
             },
@@ -169,6 +169,12 @@ var content = function() {
                 fontSize: 12,
                 bold: true
             },
+            pie: {
+                margin: [0, 30, 0, 0]
+            },
+            time_series: {
+                margin: [0, 0, 0, 0]
+            },
             observations: {
                 margin: [5, 5, 0, 0],
                 alignment: 'left',
@@ -209,18 +215,6 @@ var currentSelection = function() {
     return 'Operativas';
 };
 
-// var concentrations = function() {
-//     var zoneCounters = findZoneCounters();
-//     var concentrations = [['Zona'], ['Concentración']];
-//     for (var zone in zoneCounters) {
-//         if (zoneCounters.hasOwnProperty(zone)) {
-//             concentrations[0].push(zone);
-//             concentrations[1].push(concentration(zone, zoneCounters[zone]));
-//         }
-//     }
-//     return concentrations;
-// };
-
 var concentration = function(zone, count) {
     return round(count * 150 / (24 * area(zone)), 2) + ' %';
 };
@@ -241,20 +235,18 @@ var area = function(zone) {
 var pieChart = function() {
     var data = google.visualization.arrayToDataTable(incidentsPerZone());
     var options = {
-        color: '#324c92',
-        fontSize: 16,
+        fontSize: 30,
         height: 250,
-        width: 250,
+        width: 500,
         chartArea: {
-            width: '80%',
-            height: '80%'
+            width: '100%',
+            height: '100%'
         },
         legend: {
-            textStyel: {
-                fontSize: 14
-            },
-            position: 'bottom',
-            maxLines: 2
+            position: 'labeled',
+            textStyle: {
+                fontSize: 30
+            }
         },
         colors:[
             '#305297',
@@ -277,14 +269,13 @@ var timeSeriesChart = function() {
     var data = google.visualization.arrayToDataTable(incidentsPerTime());
     var options = {
         color: '#324c92',
-        fontSize: 18,
+        fontSize: 14,
         lineWidth: 3,
         curveType: 'function',
-        height: 270,
-        width: 470,
+        width: 400,
         chartArea: {
             width: '80%',
-            height: '60%'
+            height: '50%'
         },
         legend: {
             position: 'none'
@@ -293,22 +284,13 @@ var timeSeriesChart = function() {
             slantedTextAngle: 90,
             textStyle: {
                 color: '#324c92',
-                fontSize: 16
+                fontSize: 12
             }
         },
         vAxis: {
             textStyle: {
                 color: '#324c92',
-                fontSize: 16
-            }
-        },
-        trendlines: {
-            0: {
-                type: 'linear',
-                color: 'red',
-                lineWidth: 3,
-                opacity: 0.3,
-                showR2: true
+                fontSize: 12
             }
         }
     };
@@ -379,7 +361,7 @@ var selectedHours = function() {
         }
     }
     if (counter === 24) {
-        return 'Todo el día';
+        return 'Todo el dia';
     }
     // Remove last coma (' , ') from hours
     hours = hours.substr(0, hours.length - 3);

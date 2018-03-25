@@ -42,11 +42,11 @@ var HEATMAPS_CRIMEN = {
             ],
             active: false
         },
-        '02:00': { coords: [[16.11106791, -95.84941333]],  active: false },
+        '02:00': { coords: [[30.11106791, -108.84941333]],  active: false },
         '03:00': { coords: [[16.6816123, -101.35755553]],  active: false },
         '04:00': { coords: [[17.98524071, -98.6596144]],   active: false },
         '05:00': { coords: [[16.16692816, -97.60328777]],  active: false },
-        '06:00': { coords: [[16.16393956, -98.35351405]],  active: false },
+        '06:00': { coords: [[18.16393956, -90.35351405]],  active: false },
         '07:00': { coords: [[19.75565027, -95.3710512]],   active: false },
         '08:00': { coords: [[20.50116752, -100.44472832]], active: false },
         '09:00': { coords: [[20.76702782, -98.30227976]],  active: false },
@@ -98,7 +98,7 @@ var HEATMAPS_CRIMEN = {
         '23:00': { coords: [[18.69398571, -102.23074249]], active: false },
         '24:00': { coords: [[22.04040261, -99.4937895]],   active: false }
     },
-    'Miércoles': {
+    'Miercoles': {
         '01:00': { coords: [[23.11106791, -98.84941333]],  active: false },
         '02:00': { coords: [[18.11106791, -95.84941333]],  active: false },
         '03:00': { coords: [[18.6816123, -101.35755553]],  active: false },
@@ -176,7 +176,7 @@ var HEATMAPS_CRIMEN = {
         '23:00': { coords: [[18.69398571, -102.23074249]], active: false },
         '24:00': { coords: [[30.04040261, -99.4937895]],   active: false }
     },
-    'Sábado': {
+    'Sabado': {
         '01:00': { coords: [[20.11106791, -95.84941333]],  active: false },
         '02:00': { coords: [[18.11106791, -98.84941333]],  active: false },
         '03:00': { coords: [[18.6816123, -101.35755553]],  active: false },
