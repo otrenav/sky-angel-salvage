@@ -1,10 +1,13 @@
 
+/* jshint esversion: 6 */
+
 // This file uses various global objects. If you can't find a reference
 // for an object, look inside the `ares.html`, `ares-main.js`, and
 // `ares-constants.js` files.
 
 var GOOGLE_MAPS, TIME_SERIES, PIE;
 var GOOGLE_CHARTS_HAS_BEEN_LOADED = false;
+var MAP_CONCENTRATION_LABELS = [];
 
 var downloadReport = function() {
     updateGeographicConcentrations();
@@ -27,18 +30,50 @@ var downloadReport = function() {
 };
 
 var updateGeographicConcentrations = function() {
+    if (MAP_CONCENTRATION_LABELS.length == 0) {
+        newGeographicConcentrations();
+    } else {
+        updateCurrentGeographicConcentrations();
+    }
+};
+
+var newGeographicConcentrations = function() {
     var zoneCounters = findZoneCounters();
-    addGeographicLabel(concentration('NW', zoneCounters.NW), 24, -120.5, 18);
-    addGeographicLabel(concentration('NE', zoneCounters.NE), 31, -92.8, 18, 'left');
-    addGeographicLabel(concentration('C', zoneCounters.C), 20.5, -109, 18);
-    addGeographicLabel(concentration('SW', zoneCounters.SW), 16, -107.5, 18);
-    addGeographicLabel(concentration('SE', zoneCounters.SE), 18.5, -84.5, 18);
+    MAP_CONCENTRATION_LABELS.push(
+        addGeographicLabel(concentration('NW', zoneCounters.NW), 24, -120.5, 18)
+    );
+    MAP_CONCENTRATION_LABELS.push(
+        addGeographicLabel(concentration('NE', zoneCounters.NE), 31, -92.8, 18, 'left')
+    );
+    MAP_CONCENTRATION_LABELS.push(
+        addGeographicLabel(concentration('C', zoneCounters.C), 20.5, -109, 18)
+    );
+    MAP_CONCENTRATION_LABELS.push(
+        addGeographicLabel(concentration('SW', zoneCounters.SW), 16, -107.5, 18)
+    );
+    MAP_CONCENTRATION_LABELS.push(
+        addGeographicLabel(concentration('SE', zoneCounters.SE), 18.5, -84.5, 18)
+    );
+};
+
+var updateCurrentGeographicConcentrations = function() {
+    var zoneCounters = findZoneCounters();
+    MAP_CONCENTRATION_LABELS[0].setIcon(generateTextImage(
+        concentration('NW', zoneCounters.NW), 18));
+    MAP_CONCENTRATION_LABELS[1].setIcon(generateTextImage(
+        concentration('NE', zoneCounters.NE), 18, 'left'));
+    MAP_CONCENTRATION_LABELS[2].setIcon(generateTextImage(
+        concentration('C', zoneCounters.C), 18));
+    MAP_CONCENTRATION_LABELS[3].setIcon(generateTextImage(
+        concentration('SW', zoneCounters.SW), 18));
+    MAP_CONCENTRATION_LABELS[4].setIcon(generateTextImage(
+        concentration('SE', zoneCounters.SE), 18));
 };
 
 var generateImages = function() {
+    extractMapImage();
     timeSeriesChart();
     pieChart();
-    mapImage();
 };
 
 var content = function() {
@@ -338,14 +373,28 @@ var incidentsPerTime = function() {
         }
     }
     return data;
+
 };
 
-var mapImage = function() {
+var extractMapImage = function() {
+    /* A very weird phenomenon is happening with the html2canvas() function:
+     * it's not updating the map correctly, and requires two different passes to
+     * get the lastest map image. To avoid telling users to click twice the
+     * button that downloads the report, using a recursive call within the
+     * callbacks seems to work. This was very hard to find and is a horrendous
+     * hack, be careful.
+     */
     html2canvas(
         document.querySelector("#map-hidden"),
         { allowTaint: false, useCORS: true, logging: false }
     ).then(canvas => {
         GOOGLE_MAPS = canvas.toDataURL("image/png");
+        html2canvas(
+            document.querySelector("#map-hidden"),
+            { allowTaint: false, useCORS: true, logging: false }
+        ).then(canvas => {
+            GOOGLE_MAPS = canvas.toDataURL("image/png");
+        });
     });
 };
 

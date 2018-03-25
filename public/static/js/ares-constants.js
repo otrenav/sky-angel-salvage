@@ -659,7 +659,7 @@ var addGeographicZone = function(zone) {
 };
 
 var addGeographicLabel = function(label, lat, lng, size=24, align='right') {
-    new google.maps.Marker({
+    return new google.maps.Marker({
         map: MAP_HIDDEN,
         position: new google.maps.LatLng(lat, lng),
         icon: generateTextImage(label, size, align)
