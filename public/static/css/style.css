@@ -274,8 +274,13 @@ input, button, textarea {
 }
 
 table {
+    width: 100%;
     text-align: left;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 1em;
+}
+
+table tr:first-child {
+    color: #8a97b1;
 }
