@@ -118,8 +118,7 @@ button {
     font-size: 1.5em;
 }
 
-.group-option,
-.options-heading {
+.group-option, .options-heading {
     font-weight: 300;
     color: #7c8aa0;
 }

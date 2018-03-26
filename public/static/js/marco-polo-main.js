@@ -5,7 +5,7 @@ var COLORS = ['#01c0c8', '#fb9678', '#00c292', '#ab8ce4', '#ef6464'];
 var DESTINATION_HTML_INPUT = document.getElementById('form-destination');
 var ORIGIN_HTML_INPUT = document.getElementById('form-origin');
 var INCIDENT_INCIDENT_RADIUS = 5000;
-var INCIDENT_PATH_RADIUS = 150;
+var INCIDENT_PATH_RADIUS = 100000;
 var DESTINATION_PLACE_ID = null;
 var ORIGIN_PLACE_ID = null;
 var DIRECTIONS_RENDERERS = [];
@@ -17,6 +17,17 @@ var RESPONSE, R, NR, M, NM, C;
 var pageInit = function() {
     overrideTopBoxes();
     initMapWithAutoComplete();
+    initRadiusListeners();
+};
+
+var initRadiusListeners = function() {
+    $('input').on('input', function () {
+        INCIDENT_PATH_RADIUS = $('#form-incidents-path-radius').val();
+        INCIDENT_INCIDENT_RADIUS = $('#form-incidents-incidents-radius').val();
+        if (RESPONSE) {
+            updateRouteStatistics();
+        }
+    });
 };
 
 var overrideTopBoxes = function() {
@@ -163,60 +174,65 @@ var updateRiskOnTable = function(i) {
 var updateRisk = function(i) {
     var incidents = getIncidents();
     var path = getPath(i);
-    R = computeRiskR(incidents, path);
-    NR = computeRiskNR(incidents, path);
-    M = computeRiskM(incidents, path);
-    NM = computeRiskNM(incidents, path);
-    C = computeRiskC();
+    computeRiskRNR(incidents, path);
+    computeRiskMNM(incidents, path);
+    computeRiskC();
 };
 
-var computeRiskR = function(incidents, path) {
-    var R = 0;
+var computeRiskRNR = function(incidents, path) {
+    var c, d;
+    NR = 0;
+    R = 0;
     for (var i = 0; i < incidents.length; i++) {
         for (var p = 0; p < incidents.length; p++) {
-            R += Math.max(
-                INCIDENT_PATH_RADIUS - distance(incidents[i], path[p]), 0
+            d = distance(incidents[i], path[p]);
+            c = Math.max(
+                INCIDENT_PATH_RADIUS - d, 0
             ) / INCIDENT_PATH_RADIUS;
-        }
-    }
-    return R;
-};
-
-var distance = function(p_one, p_two) {
-    // TODO: Use geograhpic distance
-    return Math.sqrt(Math.pow(p_two[1] - p_one[1], 2) +
-                     Math.pow(p_two[0] - p_one[0], 2));
-};
-
-var computeRiskNR = function(incidents, path) {
-    return incidents.length * path.length;
-};
-
-var computeRiskM = function(incidents) {
-    var M = 0;
-    for (var i = 0; i < incidents.length; i++) {
-        for (var j = 0; j < incidents.length; j++) {
-            if (j != i) {
-                M += 1 - Math.min(distance(incidents[i], incidents[j]), 1);
+            R += c;
+            if (c > 0) {
+                NR += 1;
             }
         }
     }
-    return M;
 };
 
-var computeRiskNM = function(incidents) {
-    var n = incidents.length;
-    return n*n - n;
+var distance = function(p_one, p_two) {
+    return google.maps.geometry.spherical.computeDistanceBetween(
+        new google.maps.LatLng(p_one[0], p_one[1]),
+        new google.maps.LatLng(p_two[0], p_two[1])
+    );
+};
+
+var computeRiskMNM = function(incidents) {
+    var d, c;
+    NM = 0;
+    M = 0;
+    for (var i = 0; i < incidents.length; i++) {
+        for (var j = 0; j < incidents.length; j++) {
+            if (j != i) {
+                d = distance(incidents[i], incidents[j]);
+                c = Math.max(
+                    2 * INCIDENT_INCIDENT_RADIUS - d, 0
+                ) / (2 * INCIDENT_INCIDENT_RADIUS);
+                M += c;
+                if (c > 0) {
+                    NM += 1;
+                }
+            }
+        }
+    }
 };
 
 var computeRiskC = function() {
-    return 10 - 5 * (1 + M / NM) * (R / NR);
+    var c = R > 0 && NR > 0 ? R / NR : 0;
+    C = 10 - 5 * (1 + M / NM) * c;
 };
 
 var routeRiskHTML = function(i) {
     return `
         <tr style='color: ${COLORS[i % COLORS.length]}' onclick='activateRoute(${i})'>
-            <td>${i}</td>
+            <td>${i + 1}</td>
             <td class="pull-right">${C.toFixed(2)}</td>
         </tr>
     `;
@@ -230,7 +246,7 @@ var updateTimeOnTable = function(i) {
 var routeTimeHTML = function(i, hours) {
     return `
         <tr style='color: ${COLORS[i % COLORS.length]}' onclick='activateRoute(${i})'>
-            <td>${i}</td>
+            <td>${i + 1}</td>
             <td class="pull-right">${hours.toFixed(2)}</td>
         </tr>
     `;
@@ -244,7 +260,7 @@ var updateDistanceOnTable = function(i) {
 var routeDistanceHTML = function(i, km) {
     return `
         <tr style='color: ${COLORS[i % COLORS.length]}' onclick='activateRoute(${i})'>
-            <td>${i}</td>
+            <td>${i + 1}</td>
             <td class="pull-right">${km.toFixed(2)}</td>
         </tr>
     `;
@@ -278,7 +294,7 @@ var mapClicksListener = function() {
 var addWaypointMarkerOnMap = function(event) {
     var marker = new google.maps.Marker({
         label: {
-            text: WAYPOINTS.length - 1 + '',
+            text: WAYPOINTS.length + '',
             color: '#FFFFFF'
         },
         position: event.latLng,
@@ -286,7 +302,7 @@ var addWaypointMarkerOnMap = function(event) {
     });
     marker.addListener('click', function() {
         marker.setMap(null);
-        var index = parseInt(marker.getLabel().text);
+        var index = parseInt(marker.getLabel().text) - 1;
         WAYPOINTS.splice(index, 1);
         MARKERS.splice(index, 1);
         updateMarkerLabels();
@@ -297,7 +313,7 @@ var addWaypointMarkerOnMap = function(event) {
 
 var updateMarkerLabels = function() {
     for (var i = 0; i < MARKERS.length; i++) {
-        MARKERS[i].setLabel({ color: '#FFFFFF', text: i + '' });
+        MARKERS[i].setLabel({ color: '#FFFFFF', text: i + 1 + '' });
     }
 };
 
