@@ -188,6 +188,10 @@ button {
     color: #01c0c8 !important;
 }
 
+.text-error {
+    color: #ef6464 !important;
+}
+
 .progress-bar-primary {
     background-color: #ab8ce4;
 }
@@ -202,6 +206,10 @@ button {
 
 .progress-bar-danger {
     background-color: #fb9678;
+}
+
+.progress-bar-error {
+    background-color: #ef6464;
 }
 
 .pull-right {
@@ -246,4 +254,28 @@ button {
 
 #info-window {
     padding: 1em;
+}
+
+/*
+ * Marco Polo
+ */
+
+.form-heading {
+    padding-bottom: 0.5em;
+    padding-top: 1em;
+    color: #727d94;
+}
+
+input, button, textarea {
+    border: 2px solid #5e646d;
+    border-radius: 2px;
+    padding: 0.5em;
+    width: 100%;
+}
+
+table {
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 1em;
 }
