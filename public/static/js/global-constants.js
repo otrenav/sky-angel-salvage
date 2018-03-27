@@ -12,95 +12,36 @@ var BOX_VALUES = [
 var MAP_STYLES = [
     {
         elementType: 'geometry',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        elementType: 'labels.text.stroke',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'administrative.locality',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'poi',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'poi.park',
-        elementType: 'geometry',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'poi.park',
-        elementType: 'labels.text.fill'
+        stylers: [{ color: '#59606B' }]
     },
     {
         featureType: 'road',
         elementType: 'geometry',
-        stylers: [{color: '#01c0c8'}]
-    },
-    {
-        featureType: 'road',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#01c0c8'}]
-    },
-    {
-        featureType: 'road',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'geometry',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'transit',
-        elementType: 'geometry',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: 'transit.station',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
+        stylers: [{ color: '#98a2b5' }]
     },
     {
         featureType: 'water',
         elementType: 'geometry',
-        stylers: [{color: '#353c48'}]
+        stylers: [{ color: '#353c48' }]
+    },
+    {
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#FFFFFF" }]
+    },
+    {
+        elementType: "labels.text.stroke",
+        stylers: [{ visibility: 'off' }]
+    },
+    {
+        featureType: 'administrative',
+        elementType: 'labels.text.fill',
+        stylers: [{ visibility: 'off' }]
     },
     {
         featureType: 'water',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#59606B'}]
+        stylers: [{ color: '#353c48' }]
     },
-    {
-        featureType: 'water',
-        elementType: 'labels.text.stroke',
-        stylers: [{color: '#59606B'}]
-    },
-    {
-        featureType: "all",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
-    }
 ];
 
 var initMap = function() {
