@@ -15,6 +15,10 @@ var MAP_STYLE_NO_LABELS = [
         stylers: [{ color: '#59606B' }]
     },
     {
+        elementType: 'labels.icon',
+        stylers: [{ visibility: 'off' }]
+    },
+    {
         featureType: 'water',
         elementType: 'geometry',
         stylers: [{ color: '#353c48' }]
@@ -96,6 +100,10 @@ var MAP_STYLE_ENTITIES = [
     {
         elementType: 'geometry',
         stylers: [{ color: '#59606B' }]
+    },
+    {
+        elementType: 'labels.icon',
+        stylers: [{ visibility: 'off' }]
     },
     {
         featureType: 'water',
