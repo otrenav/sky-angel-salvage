@@ -5,14 +5,15 @@ var COLORS = ['#01c0c8', '#fb9678', '#00c292', '#ab8ce4', '#ef6464'];
 var DESTINATION_HTML_INPUT = document.getElementById('form-destination');
 var ORIGIN_HTML_INPUT = document.getElementById('form-origin');
 var INCIDENT_INCIDENT_RADIUS = 5000;
+var DIRECTIONS_SERVICE, SAMPLE_SIZE;
 var INCIDENT_PATH_RADIUS = 100000;
 var DESTINATION_PLACE_ID = null;
 var ORIGIN_PLACE_ID = null;
 var DIRECTIONS_RENDERERS = [];
-var DIRECTIONS_SERVICE;
 var WAYPOINTS = [];
 var MARKERS = [];
-var RESPONSE, R, NR, M, NM, C;
+var SAMPLE_SIZE_DONE = false;
+var RESPONSE, R, NR, M, NM, C, SAMPLE;
 
 var pageInit = function() {
     overrideTopBoxes();
@@ -24,6 +25,7 @@ var initRadiusListeners = function() {
     $('input').on('input', function () {
         INCIDENT_PATH_RADIUS = $('#form-incidents-path-radius').val();
         INCIDENT_INCIDENT_RADIUS = $('#form-incidents-incidents-radius').val();
+        SAMPLE_SIZE = $('#form-sample-size').val();
         if (RESPONSE) {
             updateRouteStatistics();
         }
@@ -184,7 +186,7 @@ var computeRiskRNR = function(incidents, path) {
     NR = 0;
     R = 0;
     for (var i = 0; i < incidents.length; i++) {
-        for (var p = 0; p < incidents.length; p++) {
+        for (var p = 0; p < path.length; p++) {
             d = distance(incidents[i], path[p]);
             c = Math.max(
                 INCIDENT_PATH_RADIUS - d, 0
@@ -318,20 +320,25 @@ var updateMarkerLabels = function() {
 };
 
 var getIncidents = function() {
-    var d = HEATMAPS_CRIMEN;
-    var incidents = [];
-    for (var day in d) {
-        if (d.hasOwnProperty(day)) {
-            for (var time in d[day]) {
-                if (d[day].hasOwnProperty(time)) {
-                    for (var i = 0; i < d[day][time].coords.length; i++) {
-                        incidents.push(d[day][time].coords[i]);
+    if (!SAMPLE_SIZE_DONE) {
+        var d = HEATMAPS_CRIMEN;
+        var incidents = [];
+        for (var day in d) {
+            if (d.hasOwnProperty(day)) {
+                for (var time in d[day]) {
+                    if (d[day].hasOwnProperty(time) && TIMES.indexOf(time) != -1) {
+                        for (var i = 0; i < d[day][time].coords.length; i++) {
+                            incidents.push(d[day][time].coords[i]);
+                        }
                     }
                 }
             }
         }
+        SAMPLE_SIZE_DONE = true;
+        SAMPLE = sample(incidents, SAMPLE_SIZE);
+        return SAMPLE;
     }
-    return incidents;
+    return SAMPLE;
 };
 
 var getPath = function(i) {
@@ -344,3 +351,16 @@ var getPath = function(i) {
     }
     return path;
 };
+
+function sample(array, size) {
+    var shuffled = array.slice(0);
+    var i = array.length;
+    var temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
