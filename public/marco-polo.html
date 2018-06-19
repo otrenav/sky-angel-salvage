@@ -1,263 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" sizes="16x16" href="">
-        <title>Sky Angel / Ares</title>
-        <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
-        <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
-        <link href="./static/css/style.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div id="tabs" class="row">
-                        <div class="col-2" onclick="location.href='./fenix.html';">
-                            <h1>FENIX</h1>
-                        </div>
-                        <div class="col-2" onclick="location.href='./ares-crimen.html';">
-                            <h1>ARES</h1>
-                        </div>
-                        <div class="col-3 active-tab" onclick="location.href='./marco-polo.html';">
-                            <h1>MARCO POLO</h1>
-                        </div>
-                        <div class="col-3" onclick="">
-                            <h1>USUARIO: ADMIN</h1>
-                        </div>
-                        <div class="col-2" onclick="">
-                            <h1>SALIR</h1>
-                        </div>
-                    </div>
-                    <div id="content" class="row">
-                        <div id="sidebar" class="col-lg-2">
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-4">
-                                    <div class="box">
-                                        <img src="./static/img/sky-angel-logo.png" class="logo">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-sm-8">
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Especificacion</h1>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">Origen</div>
-                                                <input type="text" id="form-origin" value="" placeholder ="">
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">Destino</div>
-                                                <input type="text" id="form-destination" value="" placeholder="">
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">Radio Incidencias Trayectorias</div>
-                                                <input type="number" id="form-incidents-path-radius" value="150">
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">Radio Incidencias Incidencias</div>
-                                                <input type="number" id="form-incidents-incidents-radius" value="5000">
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">No. Observaciones en Muestra (6794)</div>
-                                                <input type="number" id="form-sample-size" value="1000">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Rutas</h1>
-                                                <div class="form-heading">Riesgo</div>
-                                                <table id="table-risk">
-                                                </table>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">Tiempo</div>
-                                                <table id="table-time">
-                                                </table>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-heading">Distancia</div>
-                                                <table id="table-distance">
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="results" class="col-lg-10">
-                            <div id="top-boxes" class="row">
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-area"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">R</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-one" class="pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-1"
-                                                     class="progress-bar-danger"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-bar"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text
-                                                               text-muted">NR</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-two" class="pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-2"
-                                                     class="progress-bar-megna"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-line"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text
-                                                               text-muted">M</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-three" class="pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-3"
-                                                     class="progress-bar-primary"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-pie"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">NM</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-four" class="pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-4"
-                                                     class="progress-bar-success"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-bullseye"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">C</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-five" class="pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-5"
-                                                     class="progress-bar-error"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map" class="row">
-                                <div class="col-12">
-                                    <div class="box">
-                                        <div id="map-canvas"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <title>Sky Angel / Ares</title>
+    <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
+    <link href="./static/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="sidebar" class="col-2 background-light">
+              <div class="row">
+                <div class="col-lg-12 col-sm-4">
+                  <div class="box">
+                    <img src="./static/img/sky-angel.svg" class="logo">
+                  </div>
                 </div>
+                <div class="col-lg-12 col-sm-8">
+                  <div class="box">
+                    <div class="row mt-5">
+                      <div class="col-12">
+                        <h1 class="options-heading"><b>ESPECIFICACION</b></h1>
+                        <hr>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-heading">ORIGEN</div>
+                        <input type="text" id="form-origin" value="" placeholder ="">
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="form-heading">DESTINO</div>
+                        <input type="text" id="form-destination" value="" placeholder="">
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="form-heading">RADIO INCIDENCIAS</div>
+                        <input type="number" id="form-incidents-path-radius" value="150">
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="form-heading">RADIO TRAYECTORIAS</div>
+                        <input type="number" id="form-incidents-incidents-radius" value="5000">
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="form-heading">NO. OBS EN MUESTRA (6794)</div>
+                        <input type="number" id="form-sample-size" value="1000">
+                      </div>
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-12 mt-3">
+                        <h1 class="options-heading"><b>RUTAS</b></h1>
+                        <hr>
+                        <div class="form-heading">RIESGO</div>
+                        <table id="table-risk">
+                        </table>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="form-heading">TIEMPO</div>
+                        <table id="table-time">
+                        </table>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="form-heading">DISTANCIA</div>
+                        <table id="table-distance">
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="col-10">
+              <div id="tabs" class="row background-light">
+                <div class="col-3" onclick="location.href='./fenix.html';">
+                  <h1 class="my-2"><img src="./static/img/fenix.svg" class="mr-3">FENIX</h1>
+                </div>
+                <div class="col-3" onclick="location.href='./ares-crimen.html';">
+                  <h1 class="my-2"><img src="./static/img/ares.svg" class="mr-3">ARES</h1>
+                </div>
+                <div class="col-3 active-tab" onclick="location.href='./marco-polo.html';">
+                  <h1 class="my-2"><img src="./static/img/marco-polo.svg" class="mr-3">MARCO POLO</h1>
+                </div>
+                <div class="col-3 pt-2" onclick="">
+                  <h1 class="my-2">USUARIO: <b>ADMIN</b></h1>
+                </div>
+              </div>
+              <div id="content" class="row">
+                <div id="results" class="col">
+                  <div id="top-boxes" class="row">
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">R</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-one" class="box-number text-blue pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-1"
+                              class="progress-bar-blue"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">NR</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-two" class="box-number text-orange pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-2"
+                              class="progress-bar-orange"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">M</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-three" class="box-number text-yellow-one pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-3"
+                              class="progress-bar-yellow-one"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">NM</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-four" class="box-number text-yellow-two pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-4"
+                              class="progress-bar-yellow-two"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">C</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-five" class="box-number text-error pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-5"
+                              class="progress-bar-error"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="map" class="row">
+                    <div class="col-12">
+                      <div id="map-canvas"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <script src="./static/js/external/countUp.min.js"></script>
-        <script src="./static/js/external/jquery.min.js"></script>
-        <script src="./static/js/global-constants.js"></script>
-        <script src="./static/js/marco-polo-constants.js"></script>
-        <script src="./static/js/marco-polo-main.js"></script>
-        <script src="./static/js/global-main.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCee-SUiLT7WDqOqMwL3axHdFmAid3vtfE&libraries=visualization,geometry,places&callback=init&v=3.30"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    </body>
+      </div>
+    </div>
+    <script src="./static/js/external/countUp.min.js"></script>
+    <script src="./static/js/external/jquery.min.js"></script>
+    <script src="./static/js/global-constants.js"></script>
+    <script src="./static/js/marco-polo-constants.js"></script>
+    <script src="./static/js/marco-polo-main.js"></script>
+    <script src="./static/js/global-main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCee-SUiLT7WDqOqMwL3axHdFmAid3vtfE&libraries=visualization,geometry,places&callback=init&v=3"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  </body>
 </html>
