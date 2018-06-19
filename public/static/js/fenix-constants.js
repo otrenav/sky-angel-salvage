@@ -99,7 +99,7 @@ var CLIENTS = {
     NTA: {
         data: [],
         color: '#ffffff',
-        category: '',
+        category: 'terrestre',
         visuals: { inactive: [], active: [], future: [], dynamic: [] }
     },
     OIL: {
