@@ -1,240 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" sizes="16x16" href="">
-        <title>Sky Angel / Ares</title>
-        <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
-        <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
-        <link href="./static/css/style.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div id="tabs" class="row">
-                        <div class="col-2 active-tab" onclick="location.href='./fenix.html';">
-                            <h1>FENIX</h1>
-                        </div>
-                        <div class="col-2" onclick="location.href='./ares-crimen.html';">
-                            <h1>ARES</h1>
-                        </div>
-                        <div class="col-3" onclick="location.href='./marco-polo.html';">
-                            <h1>MARCO POLO</h1>
-                        </div>
-                        <div class="col-3" onclick="">
-                            <h1>USUARIO: ADMIN</h1>
-                        </div>
-                        <div class="col-2" onclick="">
-                            <h1>SALIR</h1>
-                        </div>
-                    </div>
-                    <div id="content" class="row">
-                        <div id="sidebar" class="col-lg-2">
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-4">
-                                    <div class="box">
-                                        <img src="./static/img/sky-angel-logo.png" class="logo">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-sm-8">
-                                    <div class="box">
-                                        <div id="client-options" class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Clientes</h1>
-                                            </div>
-                                            <div class="col-6" onclick="vectorsAll();">
-                                                <span class="general-option">Todos</span>
-                                            </div>
-                                            <div class="col-6" onclick="vectorsNone();">
-                                                <span class="general-option">Ninguno</span>
-                                            </div>
-                                            <div class="col-12">&nbsp;</div>
-                                            <div class="col-6" onclick="vectorsTerrestres();">
-                                                <span id="terrestres" class="general-option">Terrestres</span>
-                                            </div>
-                                            <div class="col-6" onclick="vectorsNavieros();">
-                                                <span id="navieros" class="general-option">Navieros</span>
-                                            </div>
-                                            <div class="col-12">&nbsp;</div>
-                                            <div class="col-12" onclick="toggle24Hours();">
-                                                <span id="24-hours" class="general-option">24 horas</span>
-                                            </div>
-                                            <div class="col-12">&nbsp;</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="results" class="col-lg-10">
-                            <div id="top-boxes" class="row">
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-area"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Terrestres</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-one" class="text-danger pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-1"
-                                                     class="progress-bar-danger"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-bar"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Navieros</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-two" class="text-megna pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-2"
-                                                     class="progress-bar-megna"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-line"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Importaciones</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-three" class="text-primary pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-3"
-                                                     class="progress-bar-primary"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-pie"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Exportaciones</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-four" class="text-success pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-4"
-                                                     class="progress-bar-success"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-bullseye"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Total</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-five" class="text-error pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-5"
-                                                     class="progress-bar-error"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map" class="row">
-                                <div class="col-12">
-                                    <div class="box">
-                                        <div id="map-canvas"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <title>Sky Angel / Ares</title>
+    <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
+    <link href="./static/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="sidebar" class="col-2 background-light">
+              <div class="row">
+                <div class="col-lg-12 col-sm-4">
+                  <div class="box">
+                    <img src="./static/img/sky-angel.svg" class="logo">
+                  </div>
                 </div>
+                <div class="col-lg-12 col-sm-8">
+                  <div class="box">
+                    <div class="row mt-5">
+                      <div class="col-12">
+                        <h1 class="options-heading mb-0"><b>CLIENTES</b></h1>
+                        <hr class="my-4">
+                      </div>
+                      <div class="col-12 my-3" onclick="vectorsAll();">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="./static/img/check.svg" class="option-icon">
+                          </div>
+                          <div class="col-9 text-left">
+                            TODOS
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 my-3" onclick="vectorsNone();">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="./static/img/eye.svg" class="option-icon">
+                          </div>
+                          <div class="col-9 text-left">
+                            NINGUNO
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 my-3" onclick="toggle24Hours();">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="./static/img/marco-polo.svg" class="option-icon">
+                          </div>
+                          <div id="24-hours" class="col-9 text-left">
+                            24 HORAS
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 my-3" onclick="vectorsTerrestres();">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="./static/img/truck.svg" class="option-icon">
+                          </div>
+                          <div id="terrrestres" class="col-9 text-left">
+                            TERRESTRE
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 my-3">
+                        <div id="terrestre-clients" class="row">
+                        </div>
+                      </div>
+                      <div class="col-12 my-3" onclick="vectorsNavieros();">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="./static/img/ship.svg" class="option-icon">
+                          </div>
+                          <div id="navieros" class="col-9 text-left">
+                            NAVIERO
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 my-3">
+                        <div id="naviero-clients" class="row">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="col-10">
+              <div id="tabs" class="row background-light">
+                <div class="col-3 active-tab text-center" onclick="location.href='./fenix.html';">
+                  <h1 class="my-2"><img src="./static/img/fenix.svg" class="mr-3">FENIX</h1>
+                </div>
+                <div class="col-3" onclick="location.href='./ares-crimen.html';">
+                  <h1 class="my-2"><img src="./static/img/ares.svg" class="mr-3">ARES</h1>
+                </div>
+                <div class="col-3" onclick="location.href='./marco-polo.html';">
+                  <h1 class="my-2"><img src="./static/img/marco-polo.svg" class="mr-3">MARCO POLO</h1>
+                </div>
+                <div class="col-3 pt-2" onclick="">
+                  <h1 class="my-2">USUARIO: <b>ADMIN</b></h1>
+                </div>
+              </div>
+              <div id="content" class="row">
+                <div id="results" class="col">
+                  <div id="top-boxes" class="row">
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">TERRESTRES</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-one" class="box-number text-blue pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-1"
+                              class="progress-bar-blue"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">NAVIEROS</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-two" class="box-number text-orange pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-2"
+                              class="progress-bar-orange"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">IMPORTACIONES</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-three" class="box-number text-yellow-one pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-3"
+                              class="progress-bar-yellow-one"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">EXPORTACIONES</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-four" class="box-number text-yellow-two pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-4"
+                              class="progress-bar-yellow-two"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">TOTAL</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-five" class="box-number text-error pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-5"
+                              class="progress-bar-error"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="map" class="row">
+                    <div class="col-12">
+                      <div id="map-canvas"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <script src="./static/js/external/countUp.min.js"></script>
-        <script src="./static/js/external/jquery.min.js"></script>
-        <script src="./static/js/global-constants.js"></script>
-        <script src="./static/js/fenix-constants.js"></script>
-        <script src="./static/js/fenix-main.js"></script>
-        <script src="./static/js/global-main.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCee-SUiLT7WDqOqMwL3axHdFmAid3vtfE&libraries=visualization,geometry,places&callback=init&v=3.30"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    </body>
+      </div>
+    </div>
+    <script src="./static/js/external/countUp.min.js"></script>
+    <script src="./static/js/external/jquery.min.js"></script>
+    <script src="./static/js/global-constants.js"></script>
+    <script src="./static/js/fenix-constants.js"></script>
+    <script src="./static/js/fenix-main.js"></script>
+    <script src="./static/js/global-main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCee-SUiLT7WDqOqMwL3axHdFmAid3vtfE&libraries=visualization,geometry,places&callback=init&v=3.30"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  </body>
 </html>

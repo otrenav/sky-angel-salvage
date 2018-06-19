@@ -1,238 +1,318 @@
 
+/*
+ * #000234
+ * #13164e
+ * #fceffc
+ * #0c4da2
+ * #41b8f7
+ * #f29100
+ * #d8e400
+ * #f3d400
+ * #303268
+ * #57598e
+ */
+
 html {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #3c4452;
-    background: #3c4452;
-    height: 100%;
-    color: #96a2b4;
-    margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #000234;
+  color: #fceffc;
+  height: 100%;
+  margin: 0;
 }
 
-span {
-    color: #96a2b4;
-}
+/* span { */
+/*   color: #96a2b4; */
+/* } */
 
-select {
-    border-color: #636b78;
-    color: #96a2b4;
-    width: 100%;
-}
+/* select { */
+/*   border-color: #636b78; */
+/*   color: #96a2b4; */
+/*   width: 100%; */
+/* } */
 
 hr {
-    border-color: #5e646d;
+  background: #fceffc;
+  height: 1px;
+  border: 0;
 }
 
-button {
-    background-color: #292e37;
-    border-color: #3c4452;
-    padding-bottom: 0.5em;
-    padding-right: 2em;
-    padding-top: 0.5em;
-    padding-left: 2em;
-    color: #96a2b4;
+/* button { */
+/*   background-color: #292e37; */
+/*   border-color: #3c4452; */
+/*   padding-bottom: 0.5em; */
+/*   padding-right: 2em; */
+/*   padding-top: 0.5em; */
+/*   padding-left: 2em; */
+/*   color: #96a2b4; */
+/* } */
+
+.background-light {
+  background: #13164e;
 }
 
 #wrapper {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 #page-wrapper {
-    background: #3c4452;
-    height: 100%;
-}
-
-#tabs {
-    text-align: center;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    cursor: pointer;
-}
-
-#tabs > div > h1 {
-    font-size: 1.5em;
-    font-weight: 300;
-}
-
-#map-canvas {
-    width: 100%;
-    height: 1000px;
-}
-
-#map-hidden {
-    height: 660px;
-    width: 1160px;
-    /* We need to hide this without using `display: none` */
-    position: absolute;
-    left: -10000px;
-    top: 0;
-}
-
-#map-canvas-hidden {
-    height: 660px;
-    width: 1160px;
-}
-
-#color-legend {
-    max-height: 10px;
-}
-
-#sidebar {
-    margin-bottom: 2em;
-}
-
-#select-a-day-warning {
-    margin-bottom: 1em;
-    color: #fb9678;
-}
-
-.hidden {
-    display: none;
-}
-
-.active-tab {
-    background-color: #4c5665;
-}
-
-.color-scale {
-    text-align: center;
-    padding-top: 1em;
-    width: 100%;
-}
-
-.color-scale > p {
-    color: #7c8aa0;
-    display: inline;
-}
-
-.option-enabled > span {
-    color: #00c292;
-}
-
-.options-heading {
-    font-size: 1.5em;
-}
-
-.group-option, .options-heading {
-    font-weight: 300;
-    color: #7c8aa0;
-}
-
-.logo {
-    max-width: 100px;
-    display: block;
-    opacity: 0.8;
-    margin: auto;
-    width: 100%;
+  height: 100%;
 }
 
 .container-fluid {
-    padding-bottom: 2em;
-    padding-right: 2em;
-    padding-left: 2em;
-    height: 100%;
+  padding-bottom: 0em !important;
+  padding-left: 0em !important;
+}
+
+#tabs {
+  text-align: center;
+  padding-bottom: 1em;
+  margin-right: -2em;
+  padding-top: 1em;
+  cursor: pointer;
+}
+
+#tabs img {
+  height: 1.5em;
+}
+
+#tabs > div > h1 {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+#map-canvas {
+  width: 100%;
+  height: 1000px;
+}
+
+#map-hidden {
+  height: 660px;
+  width: 1160px;
+  /* We need to hide this without using `display: none` */
+  position: absolute;
+  left: -10000px;
+  top: 0;
+}
+
+#map-canvas-hidden {
+  height: 660px;
+  width: 1160px;
+}
+
+#color-legend {
+  max-height: 10px;
+}
+
+#sidebar {
+  padding-left: 2em;
+  padding-top: 2em;
+  height: 100vh;
+}
+
+#select-a-day-warning {
+  margin-bottom: 1em;
+  color: #fb9678;
+}
+
+.hidden {
+  display: none;
+}
+
+.active-tab {
+  border-bottom: 3px solid #0c4da2;
+  background-color: #000234;
+}
+
+.color-scale {
+  text-align: center;
+  padding-top: 1em;
+  width: 100%;
+}
+
+.color-scale > p {
+  /* color: #7c8aa0; */
+  display: inline;
+}
+
+#naviero-clients, #terrestre-clients {
+  margin-left: 2em;
+}
+
+.option-enabled > span {
+  /* color: #00c292; */
+}
+
+.options-heading {
+  font-size: 1.2em;
+}
+
+.group-option, .options-heading {
+  font-weight: 300;
+  /* color: #7c8aa0; */
+}
+
+.option-icon {
+  height: 1.5em;
+}
+
+.logo {
+  max-width: 100px;
+  display: block;
+  opacity: 0.8;
+  margin: auto;
+  width: 100%;
+}
+
+.container-fluid {
+  padding-bottom: 2em;
+  padding-right: 2em;
+  padding-left: 2em;
+  height: 100%;
 }
 
 .box {
-    margin-bottom: 15px;
-    overflow: hidden;
-    color: #dce2ec;
-    padding: 25px;
+  /* margin-bottom: 15px; */
+  overflow: hidden;
+  color: #fceffc;
+  padding-bottom: 0em;
+  padding-right: 1em;
+  padding-left: 1em;
+  padding-top: 0em;
 }
 
 .box-text {
-    font-size: 1.5em;
-    font-weight: 400;
+  margin-top: 0.6em;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.box-number {
+  margin-bottom: 0.1em;
+  margin-top: 0.2em;
+  font-size: 1.7em;
 }
 
 .icon {
-    position: absolute;
-    margin-top: -0.4em;
-    font-size: 14em;
-    color: #3b4250;
+  position: absolute;
+  /* margin-top: -0.4em; */
+  font-size: 14em;
+  /* color: #3b4250; */
 }
 
 .progress {
-    background-color: rgba(120, 130, 140, .28);
-    -webkit-box-shadow: none!important;
-    box-shadow: none!important;
-    margin-bottom: 18px;
-    border-radius: 0;
-    overflow: hidden;
-    height: 4px;
+  background-color: rgba(120, 130, 140, .28);
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  /* margin-bottom: 18px; */
+  border-radius: 0;
+  overflow: hidden;
+  height: 4px;
+}
+
+.text-blue {
+  color: #41b8f7 !important;
+}
+
+.text-orange {
+  color: #f29100 !important;
+}
+
+.text-yellow-one {
+  color: #d8e400 !important;
+}
+
+.text-yellow-two {
+  color: #f3d400 !important;
 }
 
 .text-danger {
-    color: #fb9678 !important;
+  color: #fb9678 !important;
 }
 
 .text-muted {
-    color: #8d9ea7 !important;
+  color: #8d9ea7 !important;
 }
 
 .text-success {
-    color: #00c292 !important;
+  color: #00c292 !important;
 }
 
 .text-primary {
-    color: #ab8ce4 !important;
+  color: #ab8ce4 !important;
 }
 
 .text-megna {
-    color: #01c0c8 !important;
+  color: #01c0c8 !important;
 }
 
 .text-error {
-    color: #ef6464 !important;
+  color: #ef6464 !important;
+}
+
+.progress-bar-blue {
+  background-color: #41b8f7;
+}
+
+.progress-bar-orange {
+  background-color: #f29100;
+}
+
+.progress-bar-yellow-one {
+  background-color: #d8e400;
+}
+
+.progress-bar-yellow-two {
+  background-color: #f3d400;
 }
 
 .progress-bar-primary {
-    background-color: #ab8ce4;
+  background-color: #ab8ce4;
 }
 
 .progress-bar-success {
-    background-color: #00c292;
+  background-color: #00c292;
 }
 
 .progress-bar-megna {
-    background-color: #01c0c8;
+  background-color: #01c0c8;
 }
 
 .progress-bar-danger {
-    background-color: #fb9678;
+  background-color: #fb9678;
 }
 
 .progress-bar-error {
-    background-color: #ef6464;
+  background-color: #ef6464;
 }
 
 .pull-right {
-    text-align: right;
-    float: right;
+  text-align: right;
+  float: right;
 }
 
 #top-boxes {
-    margin-right: 0.3em;
-    margin-left: 0.1em;
-    display: flex;
-    flex-flow: row;
+  /* margin-right: 0.3em; */
+  /* margin-left: 0.1em; */
+  display: flex;
+  flex-flow: row;
 }
 
 #top-boxes > div {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 #top-boxes > div:not(:last-child) {
-    margin-right: 1em;
+  /* margin-right: 1em; */
 }
 
 .box, input, select {
-    background: #353c48;
+  /* background: #353c48; */
 }
 
 /*
@@ -241,18 +321,18 @@ button {
 
 /* Rectangle */
 .gm-style .gm-style-iw {
-    background-color: #353c48 !important;
-    font-color: #ffffff;
-    font-weight: 500;
+  background-color: #000234 !important;
+  font-color: #fceffc;
+  font-weight: 500;
 }
 
 /* Bottom arrow */
 .gm-style div div div div div div div div {
-    background-color: #353c48 !important;
+  background-color: #000234 !important;
 }
 
 #info-window {
-    padding: 1em;
+  padding: 1em;
 }
 
 /*
@@ -260,26 +340,26 @@ button {
  */
 
 .form-heading {
-    padding-bottom: 0.5em;
-    padding-top: 1em;
-    color: #727d94;
+  padding-bottom: 0.5em;
+  padding-top: 1em;
+  /* color: #727d94; */
 }
 
 input, button, textarea {
-    border: 2px solid #5e646d;
-    border-radius: 2px;
-    padding: 0.5em;
-    width: 100%;
+  /* border: 2px solid #5e646d; */
+  border-radius: 2px;
+  padding: 0.5em;
+  width: 100%;
 }
 
 table {
-    width: 100%;
-    text-align: left;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 1em;
+  margin-bottom: 1em;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+  width: 100%;
 }
 
 table tr:first-child {
-    color: #8a97b1;
+  /* color: #8a97b1; */
 }
