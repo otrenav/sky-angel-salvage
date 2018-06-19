@@ -192,13 +192,6 @@ button:hover {
   font-size: 1.7em;
 }
 
-.icon {
-  position: absolute;
-  /* margin-top: -0.4em; */
-  font-size: 14em;
-  /* color: #3b4250; */
-}
-
 .progress {
   background-color: rgba(120, 130, 140, .28);
   -webkit-box-shadow: none!important;
