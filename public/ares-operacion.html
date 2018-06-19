@@ -1,291 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" sizes="16x16" href="">
-        <title>Sky Angel / Ares / Incidencias operacionales</title>
-        <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
-        <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
-        <link href="./static/css/style.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div id="tabs" class="row">
-                        <div class="col-2" onclick="location.href='./fenix.html';">
-                            <h1>FENIX</h1>
-                        </div>
-                        <div class="col-2 active-tab" onclick="location.href='./ares-crimen.html';">
-                            <h1>ARES</h1>
-                        </div>
-                        <div class="col-3" onclick="location.href='./marco-polo.html';">
-                            <h1>MARCO POLO</h1>
-                        </div>
-                        <div class="col-3" onclick="">
-                            <h1>USUARIO: ADMIN</h1>
-                        </div>
-                        <div class="col-2" onclick="">
-                            <h1>SALIR</h1>
-                        </div>
-                    </div>
-                    <div id="content" class="row">
-                        <div id="sidebar" class="col-lg-2">
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-4">
-                                    <div class="box">
-                                        <img src="./static/img/sky-angel-logo.png" class="logo">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-sm-8">
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Datos</h1>
-                                            </div>
-                                            <div class="col-12">
-                                                <select onchange="location = this.value;">
-                                                    <option value="ares-crimen.html">Crimen</option>
-                                                    <option value="ares-operacion.html" selected>Operacion</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div id="day-options" class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Dia</h1>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div id="time-options" class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Hora</h1>
-                                            </div>
-                                            <div id="select-a-day-warning"
-                                                 class="col-12" style="display: none">
-                                                Seleccione dia.
-                                            </div>
-                                            <div class="col-6" onclick="heatmapHoursAll();">
-                                                <span class="group-option">Todas</span>
-                                            </div>
-                                            <div class="col-6" onclick="heatmapHoursNone();">
-                                                <span class="group-option">Ninguna</span>
-                                            </div>
-                                            <div class="col-12">&nbsp;</div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h1 class="options-heading">Intensidad</h1>
-                                            </div>
-                                            <div class="col-12">
-                                                <img id="color-legend" src="static/img/ares-gradient.png" width="100%">
-                                                <div class="color-scale">
-                                                    <p style="float: left;">0</p>
-                                                    <p>0.5</p>
-                                                    <p style="float: right;">1</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <button onclick="downloadReport('criminales')">
-                                                    <i class="fa fa-download"></i> Reporte
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="results" class="col-lg-10">
-                            <div id="top-boxes" class="row">
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-area"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Noroeste</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-one" class="text-danger pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-1"
-                                                     class="progress-bar-danger"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-bar"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Noreste</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-two" class="text-megna pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-2"
-                                                     class="progress-bar-megna"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-line"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Centro</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-three" class="text-primary pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-3"
-                                                     class="progress-bar-primary"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-chart-pie"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Suroeste</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-four" class="text-success pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-4"
-                                                     class="progress-bar-success"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="icon">
-                                                        <i class="fa fa-bullseye"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h1 class="box-text text-muted">Sureste</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h1 id="box-int-five" class="text-error pull-right"></h1>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress">
-                                                <div id="progress-percent-5"
-                                                     class="progress-bar-error"
-                                                     style="width: 0%">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map" class="row">
-                                <div class="col-12">
-                                    <div class="box">
-                                        <div id="map-canvas"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map-hidden" class="row">
-                                <div class="col-12">
-                                    <div id="map-canvas-hidden"></div>
-                                </div>
-                            </div>
-                            <div id="report-images" class="hidden">
-                                <div id="report-pie-chart"></div>
-                                <div id="report-time-series-chart"></div>
-                                <img id="report-image"></div>
-                        </div>
-                    </div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <title>Sky Angel / Ares / Incidencias operacionales</title>
+    <link href="./static/css/external/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/external/bootstrap-extension.css" rel="stylesheet">
+    <link href="./static/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="sidebar" class="col-2 background-light">
+              <div class="row">
+                <div class="col-lg-12 col-sm-4">
+                  <div class="box">
+                    <img src="./static/img/sky-angel.svg" class="logo">
+                  </div>
                 </div>
+                <div class="col-lg-12 col-sm-8">
+                  <div class="box">
+                    <div class="row mt-5">
+                      <div class="col-12">
+                        <h1 class="options-heading"><b>DATOS</b></h1>
+                        <hr>
+                      </div>
+                      <div class="col-12">
+                        <select onchange="location = this.value;">
+                          <option value="ares-crimen.html">Crimen</option>
+                          <option value="ares-operacion.html" selected>Operacion</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div id="day-options" class="row mt-5">
+                      <div class="col-12">
+                        <h1 class="options-heading"><b>DIA</b></h1>
+                        <hr>
+                      </div>
+                    </div>
+                    <div id="time-options" class="row mt-5">
+                      <div class="col-12">
+                        <h1 class="options-heading"><b>HORA</b></h1>
+                        <hr>
+                      </div>
+                      <div id="select-a-day-warning"
+                        class="col-12" style="display: none">
+                        Seleccione dia.
+                      </div>
+                      <div class="col-6" onclick="heatmapHoursAll();">
+                        <span class="group-option">TODAS</span>
+                      </div>
+                      <div class="col-6" onclick="heatmapHoursNone();">
+                        <span class="group-option">NINGUNA</span>
+                      </div>
+                      <div class="col-12">&nbsp;</div>
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-12">
+                        <h1 class="options-heading"><b>INTENSIDAD</b></h1>
+                        <hr>
+                      </div>
+                      <div class="col-12">
+                        <img id="color-legend" src="static/img/ares-gradient.png" width="100%">
+                        <div class="color-scale">
+                          <p style="float: left;">0</p>
+                          <p>0.5</p>
+                          <p style="float: right;">1</p>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-12">
+                        <button onclick="downloadReport('criminales')">
+                          <i class="fa fa-download"></i> Reporte
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="col-10">
+              <div id="tabs" class="row background-light">
+                <div class="col-3" onclick="location.href='./fenix.html';">
+                  <h1 class="my-2"><img src="./static/img/fenix.svg" class="mr-3">FENIX</h1>
+                </div>
+                <div class="col-3 active-tab" onclick="location.href='./ares-crimen.html';">
+                  <h1 class="my-2"><img src="./static/img/ares.svg" class="mr-3">ARES</h1>
+                </div>
+                <div class="col-3" onclick="location.href='./marco-polo.html';">
+                  <h1 class="my-2"><img src="./static/img/marco-polo.svg" class="mr-3">MARCO POLO</h1>
+                </div>
+                <div class="col-3 pt-2" onclick="">
+                  <h1 class="my-2">USUARIO: <b>ADMIN</b></h1>
+                </div>
+              </div>
+              <div id="content" class="row">
+                <div id="results" class="col">
+                  <div id="top-boxes" class="row">
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">NOROESTE</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-one" class="box-number text-blue pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-1"
+                              class="progress-bar-blue"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">NORESTE</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-two" class="box-number text-orange pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-2"
+                              class="progress-bar-orange"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">CENTRO</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-three" class="box-number text-yellow-one pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-3"
+                              class="progress-bar-yellow-one"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">SUROESTE</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-four" class="box-number text-yellow-two pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-4"
+                              class="progress-bar-yellow-two"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-6">
+                          <h1 class="box-text">SURESTE</h1>
+                        </div>
+                        <div class="col-6">
+                          <h1 id="box-int-five" class="box-number text-error pull-right"></h1>
+                        </div>
+                        <div class="col-12">
+                          <div class="progress">
+                            <div id="progress-percent-5"
+                              class="progress-bar-error"
+                              style="width: 0%">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="map" class="row">
+                    <div class="col-12">
+                      <div id="map-canvas"></div>
+                    </div>
+                  </div>
+                  <div id="map-hidden" class="row">
+                    <div class="col-12">
+                      <div id="map-canvas-hidden"></div>
+                    </div>
+                  </div>
+                  <div id="report-images" class="hidden">
+                    <div id="report-pie-chart"></div>
+                    <div id="report-time-series-chart"></div>
+                    <img id="report-image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-        <script>CURRENT_SELECTION = 'operacion';</script>
-        <script src="./static/js/external/text-image.js"></script>
-        <script src="./static/js/external/html2canvas.min.js"></script>
-        <script src="./static/js/external/countUp.min.js"></script>
-        <script src="./static/js/external/pdfmake.min.js"></script>
-        <script src="./static/js/external/vfs_fonts.js"></script>
-        <script src="./static/js/external/jquery.min.js"></script>
-        <script src="./static/js/global-constants.js"></script>
-        <script src="./static/js/ares-logo.js"></script>
-        <script src="./static/js/ares-constants.js"></script>
-        <script src="./static/js/ares-main.js"></script>
-        <script src="./static/js/ares-pdf.js"></script>
-        <script src="./static/js/global-main.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCee-SUiLT7WDqOqMwL3axHdFmAid3vtfE&libraries=visualization,geometry,places&callback=init&v=3.30"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-        <script async src="https://www.gstatic.com/charts/loader.js"></script>
-    </body>
+      </div>
+    </div>
+    <script>CURRENT_SELECTION = 'operacion';</script>
+    <script src="./static/js/external/text-image.js"></script>
+    <script src="./static/js/external/html2canvas.min.js"></script>
+    <script src="./static/js/external/countUp.min.js"></script>
+    <script src="./static/js/external/pdfmake.min.js"></script>
+    <script src="./static/js/external/vfs_fonts.js"></script>
+    <script src="./static/js/external/jquery.min.js"></script>
+    <script src="./static/js/global-constants.js"></script>
+    <script src="./static/js/ares-logo.js"></script>
+    <script src="./static/js/ares-constants.js"></script>
+    <script src="./static/js/ares-main.js"></script>
+    <script src="./static/js/ares-pdf.js"></script>
+    <script src="./static/js/global-main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCee-SUiLT7WDqOqMwL3axHdFmAid3vtfE&libraries=visualization,geometry,places&callback=init&v=3.30"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script async src="https://www.gstatic.com/charts/loader.js"></script>
+  </body>
 </html>

@@ -8253,7 +8253,7 @@ var initMapHidden = function() {
     MAP_HIDDEN = new google.maps.Map(document.getElementById('map-canvas-hidden'), {
         center: { lat: 24, lng:-102 },
         zoomControl: false,
-        styles: MAP_STYLES,
+        styles: MAP_STYLE_ENTITIES,
         draggable: false,
         zoom: 5
     });

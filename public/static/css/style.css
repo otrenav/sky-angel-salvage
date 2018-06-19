@@ -25,31 +25,25 @@ body {
   margin: 0;
 }
 
-/* span { */
-/*   color: #96a2b4; */
-/* } */
-
-/* select { */
-/*   border-color: #636b78; */
-/*   color: #96a2b4; */
-/*   width: 100%; */
-/* } */
-
 hr {
-  background: #fceffc;
+  background: #a1a2c1;
   height: 1px;
   border: 0;
 }
 
-/* button { */
-/*   background-color: #292e37; */
-/*   border-color: #3c4452; */
-/*   padding-bottom: 0.5em; */
-/*   padding-right: 2em; */
-/*   padding-top: 0.5em; */
-/*   padding-left: 2em; */
-/*   color: #96a2b4; */
-/* } */
+button {
+  border-color: #57598e;
+  background: #444779;
+  padding-bottom: 0.5em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-left: 2em;
+  color: #fceffc;
+}
+
+button:hover {
+  background: #575a95;
+}
 
 .background-light {
   background: #13164e;
@@ -145,7 +139,7 @@ hr {
 }
 
 .option-enabled > span {
-  /* color: #00c292; */
+  color: #f29100;
 }
 
 .options-heading {
@@ -297,22 +291,12 @@ hr {
 }
 
 #top-boxes {
-  /* margin-right: 0.3em; */
-  /* margin-left: 0.1em; */
   display: flex;
   flex-flow: row;
 }
 
 #top-boxes > div {
   flex-grow: 1;
-}
-
-#top-boxes > div:not(:last-child) {
-  /* margin-right: 1em; */
-}
-
-.box, input, select {
-  /* background: #353c48; */
 }
 
 /*
@@ -335,19 +319,22 @@ hr {
   padding: 1em;
 }
 
-/*
- * Marco Polo
- */
-
 .form-heading {
   padding-bottom: 0.5em;
   padding-top: 1em;
-  /* color: #727d94; */
+  color: #8f91b9;
+}
+
+select {
+  border-color: #57598e;
+  background: #13164e;
+  color: #fceffc;
+  width: 100%;
 }
 
 input, button, textarea {
-  /* border: 2px solid #5e646d; */
-  border-radius: 2px;
+  border: 1px solid #57598e;
+  background: #13164e;
   padding: 0.5em;
   width: 100%;
 }

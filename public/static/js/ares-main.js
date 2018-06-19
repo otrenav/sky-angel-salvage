@@ -177,7 +177,8 @@ var insertDayOptions = function() {
 
 var insertTimeOptions = function() {
     for (var selector in HEATMAPS.Lunes) {
-        if (HEATMAPS.Lunes.hasOwnProperty(selector)) {
+      if (HEATMAPS.Lunes.hasOwnProperty(selector) &&
+          selector !== 'active') {
             $('#time-options').append(timeOptionHTML(selector));
         }
     }
