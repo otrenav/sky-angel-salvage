@@ -1,9 +1,13 @@
 
-# Sky Angel Web
+[Delta Lab](https://links.deltalab.ai/website) | [Twitter](https://links.deltalab.ai/twitter) | [LinkedIn](https://links.deltalab.ai/linkedin)
+
+---
+
+# Truck Security POC Salvage
 
 ## Notas
 
-### FENIX
+### Componente 1
 
 La estructura de datos es una lista de listas, donde cada una de las listas
 internas (observación) tiene los siguientes valores:
@@ -18,7 +22,7 @@ internas (observación) tiene los siguientes valores:
 - `FECHA_EST_LLEGADA` (date)
 - `ID_TEXTO_CLIENTE` (string)
 
-1. Sky Angel especificó que hay varios movimientos con orígenes/destinos
+1. El ciente especificó que hay varios movimientos con orígenes/destinos
    identicos,porque son varios transportes o convoys, y quieren ver un vector
    por cada uno de ellos.
 
@@ -41,7 +45,7 @@ internas (observación) tiene los siguientes valores:
      - Sin especificar:
        - NTA
 
-### ARES
+### Componente 2
 
 La estructura de datos es un diccionario de diccionarios, donde cada uno de los
 diccionarios de primer nivel (días) tiene un diccionario dentro (horas), cuyos
@@ -124,6 +128,6 @@ var HEATMAPS = {
     - [x] Si no se han seleccionado horas específicas se debe mostrar la
           información de todo el día simultáneamente
 
-## Preguntas
+---
 
-- Sin preguntas por ahora.
+> "We are the people we have been waiting for."
